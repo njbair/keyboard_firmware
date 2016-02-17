@@ -1,0 +1,12 @@
+[submodule "submodules/tmk_keyboard"]
+	path = submodules/tmk_keyboard
+	url = git@github.com:njbair/tmk_keyboard.git
+[submodule "tmk_core"]
+	path = tmk_core
+	url = https://github.com/tmk/tmk_keyboard.git
+[submodule "qmk"]
+	path = qmk
+	url = https://github.com/jackhumbert/qmk_firmware.git
+[submodule "tmk_keyboard"]
+	path = tmk_keyboard
+	url = https://github.com/tmk/tmk_keyboard.git
