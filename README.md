@@ -14,6 +14,7 @@ boards:
 * [Alps64 (HHKB Layout)](keyboard/alps64/keymap_hhkb.c)
 * [Infinity](keyboard/infinity/keymap_njbair.c)
 * [Filco Zero](keyboard/filco_zero/keymap.c)
+* [Planck](keyboard/planck/keymaps/njbair.c)
 * [USB to USB Converter](converter/usb_usb/keymap_njbair.c)
 
 Required Libraries
