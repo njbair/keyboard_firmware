@@ -1,5 +1,5 @@
-njbair's TMK fork
-=================
+njbair's Keyboard Firmware Collection
+=====================================
 
 This is my personal TMK/QMK firmware repo, based on the work of others and
 including my own custom layouts.
