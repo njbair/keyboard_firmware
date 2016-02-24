@@ -43,8 +43,8 @@ TARGET = planck
 
 
 # Directory common source filess exist
-TOP_DIR = ../../qmk
-TMK_DIR = ../../qmk/tmk_core
+TOP_DIR = ../../module/qmk
+TMK_DIR = ../../module/qmk/tmk_core
 
 # Directory keyboard dependent files exist
 TARGET_DIR = .

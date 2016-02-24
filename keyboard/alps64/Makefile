@@ -42,7 +42,7 @@
 TARGET = alps64
 
 # Directory common source filess exist
-TMK_DIR = ../../tmk_core
+TMK_DIR = ../../module/tmk/tmk_core
 
 # Directory keyboard dependent files exist
 TARGET_DIR = .
