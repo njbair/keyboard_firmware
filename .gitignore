@@ -1,0 +1,21 @@
+.dep
+*.o
+*.eep
+*.elf
+*.hex
+*.lss
+*.lst
+*.map
+*.sym
+*.swp
+tags
+*~
+build/
+*.bak
+.vagrant/
+.DS_STORE
+
+# Eclipse Settings
+.cproject
+.project
+.settings/
