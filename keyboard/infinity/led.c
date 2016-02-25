@@ -1,5 +1,5 @@
 /*
-Copyright 2011 Jun Wako <wakojun@gmail.com>
+Copyright 2012 Jun Wako <wakojun@gmail.com>
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -15,11 +15,10 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#include "stdint.h"
+#include "hal.h"
+
 #include "led.h"
 
 
-/* HHKB has no LEDs */
-void led_set(uint8_t usb_led)
-{
+void led_set(uint8_t usb_led) {
 }

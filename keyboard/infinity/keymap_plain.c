@@ -1,6 +1,6 @@
 #include "keymap_common.h"
 
-const uint8_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
+const uint8_t keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     /* Layer 0: Default Layer
      * ,-----------------------------------------------------------.
      * |Esc|  1|  2|  3|  4|  5|  6|  7|  8|  9|  0|  -|  =|  `|BSp|
@@ -42,7 +42,7 @@ const uint8_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
            TRNS,TRNS,TRNS,          TRNS,               TRNS,TRNS,TRNS,TRNS),
 };
 
-const uint16_t PROGMEM fn_actions[] = {
+const uint16_t fn_actions[] = {
     [0] = ACTION_LAYER_MOMENTARY(1),
 };
 
