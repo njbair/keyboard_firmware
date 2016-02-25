@@ -24,15 +24,13 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define DEVICE_VER      0x0104
 #define MANUFACTURER    Costar
 #define PRODUCT         Majestouch TKL
-
-/* message strings */
 #define DESCRIPTION     t.m.k. keyboard firmware for Majestouch TKL
 
 /* matrix size */
 #define MATRIX_ROWS 8
 #define MATRIX_COLS 18
 
-/* Set 0 if need no debouncing */
+/* Set 0 if debouncing isn't needed */
 #define DEBOUNCE    5
 
 /* key combination for command */
