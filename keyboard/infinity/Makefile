@@ -13,9 +13,9 @@ SRC =	matrix.c \
 	led.c
 
 ifdef KEYMAP
-    SRC := keymap_$(KEYMAP).c $(SRC)
+    SRC := keymaps/$(KEYMAP).c $(SRC)
 else
-    SRC := keymap_njbair.c $(SRC)
+    SRC := keymaps/default.c $(SRC)
 endif
 
 CONFIG_H = config.h
