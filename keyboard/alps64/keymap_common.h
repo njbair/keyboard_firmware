@@ -68,7 +68,6 @@ extern const uint16_t fn_actions[];
 )
 
 /* Dell ANSI */
-/* Not tested yet!!! */
 #define KEYMAP_ANSI( \
     K36, K37, K46, K47, K56, K57, K66, K67, K76, K77, K06, K07, K17, K27, \
     K34, K35, K44, K45, K54, K55, K64, K65, K75, K05, K15, K16, K25, K24, \
