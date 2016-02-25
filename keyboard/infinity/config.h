@@ -51,7 +51,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 )
 
 /* Keymap for Infiity prototype */
-#define INFINITY_PROTOTYPE
+//#define INFINITY_PROTOTYPE
 
 
 /*
