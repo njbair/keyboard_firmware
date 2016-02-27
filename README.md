@@ -10,9 +10,10 @@ My Custom Layouts
 Here are some quick links to my custom TMK layouts in this repo for various
 boards:
 
-* [Alps64 (AEKII Layout)](keyboard/alps64/keymap_aekii.c)
-* [Alps64 (HHKB Layout)](keyboard/alps64/keymap_hhkb.c)
-* [Infinity (ChibiOS)](keyboard/infinity/keymap_njbair.c)
+* [Alps64 (ANSI Layout)](keyboard/alps64/keymaps/ansi.c)
+* [Alps64 (AEKII Layout)](keyboard/alps64/keymaps/aekii.c)
+* [Alps64 (HHKB Layout)](keyboard/alps64/keymaps/hhkb.c)
+* [Infinity (ChibiOS)](keyboard/infinity/keymaps/default.c)
 * [Filco Zero](keyboard/filco_zero/keymap_ansi.c)
 * [Planck](keyboard/planck/keymaps/njbair.c)
 * [USB to USB Converter](converter/usb_usb/keymap_njbair.c)
