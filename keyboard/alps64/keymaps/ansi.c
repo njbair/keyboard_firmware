@@ -65,7 +65,7 @@ const uint8_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      */
     [5] = KEYMAP_ANSI(
     ESC, 1,   2,   3,   4,   5,   6,   7,   8,   9,   0,   MINS,EQL, BSPC,
-    FN1, Q,   W,   E,   R,   T,   Y,   U,   I,   O,   P,   LBRC,RBRC,BSLS,
+    TAB, Q,   W,   E,   R,   T,   Y,   U,   I,   O,   P,   LBRC,RBRC,BSLS,
     CAPS,A,   S,   D,   F,   G,   H,   J,   K,   L,   SCLN,QUOT,ENT,
     LSFT,Z,   X,   C,   V,   B,   N,   M,   COMM,DOT, SLSH,RSFT,
     LCTL,NO,  LALT,               SPC,                RALT,NO,  FN0, RCTL
@@ -92,6 +92,7 @@ const uint8_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     TRNS,TRNS,TRNS,               TRNS,               TRNS,TRNS,TRNS,TRNS
     ),
 
+    /* Layout selection layer */
     [7] = KEYMAP_ANSI(
     NO,  FN4, FN5, FN6, FN7, FN8, NO,  NO,  NO,  NO,  NO,  NO,  NO,  NO,
     TRNS,FN4, FN7, NO,  NO,  NO,  NO,  NO,  NO,  NO,  NO,  NO,  NO,  NO,
