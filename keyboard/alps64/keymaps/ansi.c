@@ -26,7 +26,7 @@ const uint8_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [1] = KEYMAP_ANSI(
     ESC, 1,   2,   3,   4,   5,   6,   7,   8,   9,   0,   MINS,EQL, BSPC,
     FN1, Q,   W,   E,   R,   T,   Y,   U,   I,   O,   P,   LBRC,RBRC,BSLS,
-    CAPS,A,   S,   D,   F,   G,   H,   J,   K,   L,   SCLN,QUOT, FN2,
+    CAPS,A,   S,   D,   F,   G,   H,   J,   K,   L,   SCLN,QUOT,FN2,
     LSFT,Z,   X,   C,   V,   B,   N,   M,   COMM,DOT, SLSH,RSFT,
     LCTL,LGUI,LALT,               FN3,                RALT,RGUI,FN0, RCTL
     ),
@@ -81,7 +81,7 @@ const uint8_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      * |-----------------------------------------------------------|
      * |Shift   |   |   |   |   |   |  +|  -|End|PgD|Dow| Shift    |
      * |-----------------------------------------------------------|
-     * |Ctrl|GUI |Alt |       Space            |Alt |GUI |Fn5 |Ctrl|
+     * |Ctrl|GUI |Alt |       Space            |Alt |GUI |Fn0 |Ctrl|
      * `-----------------------------------------------------------'
      */ 
     [6] = KEYMAP_ANSI(
@@ -89,7 +89,7 @@ const uint8_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     CAPS,NO,  NO,  NO,  NO,  NO,  NO,  NO,  PSCR,SLCK,PAUS,UP,  NO,  INS,
     TRNS,VOLD,VOLU,MUTE,NO,  NO,  PAST,PSLS,HOME,PGUP,LEFT,RGHT,TRNS,
     TRNS,NO,  NO,  NO,  NO,  NO,  PPLS,PMNS,END, PGDN,DOWN,TRNS,
-    TRNS,TRNS,TRNS,               TRNS,               TRNS,RGUI,TRNS,TRNS
+    TRNS,TRNS,TRNS,               TRNS,               TRNS,TRNS,TRNS,TRNS
     ),
 
     [7] = KEYMAP_ANSI(
@@ -107,13 +107,13 @@ const uint8_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * Fn action definition
  */
 const uint16_t PROGMEM fn_actions[] = {
-    [0] = ACTION_LAYER_TAP_KEY(7, KC_APP),            // Layout selection layer
-    [1] = ACTION_LAYER_TAP_KEY(7, KC_TAB),            // Layout selection layer
-    [2] = ACTION_LAYER_TAP_KEY(6, KC_ENTER),          // HHKB layer
-    [3] = ACTION_LAYER_TAP_KEY(6, KC_SPC),            // HHKB layer
-    [4] = ACTION_DEFAULT_LAYER_SET(1),                // QWERTY layout
-    [5] = ACTION_DEFAULT_LAYER_SET(2),                // Colemak layout
-    [6] = ACTION_DEFAULT_LAYER_SET(3),                // Dvorak layout
-    [7] = ACTION_DEFAULT_LAYER_SET(4),                // Workman layout
-    [8] = ACTION_DEFAULT_LAYER_SET(5),                // Gamer layout
+    [0]  = ACTION_LAYER_TAP_KEY(7, KC_APP),            // Layout selection layer
+    [1]  = ACTION_LAYER_TAP_KEY(7, KC_TAB),            // Layout selection layer
+    [2]  = ACTION_LAYER_TAP_KEY(6, KC_ENTER),          // HHKB layer
+    [3]  = ACTION_LAYER_TAP_KEY(6, KC_SPC),            // HHKB layer
+    [4]  = ACTION_DEFAULT_LAYER_SET(1),                // QWERTY layout
+    [5]  = ACTION_DEFAULT_LAYER_SET(2),                // Colemak layout
+    [6]  = ACTION_DEFAULT_LAYER_SET(3),                // Dvorak layout
+    [7]  = ACTION_DEFAULT_LAYER_SET(4),                // Workman layout
+    [8]  = ACTION_DEFAULT_LAYER_SET(5),                // Gamer layout
 };
