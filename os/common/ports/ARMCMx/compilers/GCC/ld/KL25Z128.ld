@@ -18,14 +18,14 @@
 */
 
 /*
- * MK20DX128 memory setup.
+ * KL25Z128 memory setup.
  */
 MEMORY
 {
     flash0   : org = 0x00000000, len = 0x100
     flashcfg : org = 0x00000400, len = 0x10
     flash    : org = 0x00000410, len = 128k - 0x410
-    ram0     : org = 0x1fffe000, len = 16k
+    ram0     : org = 0x1FFFF000, len = 16k
     ram1     : org = 0x00000000, len = 0
     ram2     : org = 0x00000000, len = 0
     ram3     : org = 0x00000000, len = 0

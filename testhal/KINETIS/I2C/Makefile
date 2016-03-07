@@ -83,7 +83,7 @@ PROJECT = ch
 
 # Imported source files and paths
 CHIBIOS = ../../..
-include $(CHIBIOS)/os/common/ports/ARMCMx/compilers/GCC/mk/startup_k20x5.mk
+include $(CHIBIOS)/os/common/ports/ARMCMx/compilers/GCC/mk/startup_k20x.mk
 include $(CHIBIOS)/os/hal/hal.mk
 include $(CHIBIOS)/os/hal/ports/KINETIS/K20x/platform.mk
 include $(CHIBIOS)/os/hal/boards/FREESCALE_FREEDOM_K20D50M/board.mk
