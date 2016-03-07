@@ -29,6 +29,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #endif
 static uint8_t debouncing = DEBOUNCE;
 
+/* matrix state(1:on, 0:off) */
 static matrix_row_t matrix[MATRIX_ROWS];
 static matrix_row_t matrix_debouncing[MATRIX_ROWS];
 
@@ -37,12 +38,15 @@ static void init_rows(void);
 static void unselect_cols(void);
 static void select_col(uint8_t col);
 
-inline uint8_t matrix_rows(void)
+
+inline
+uint8_t matrix_rows(void)
 {
     return MATRIX_ROWS;
 }
 
-inline uint8_t matrix_cols(void)
+inline
+uint8_t matrix_cols(void)
 {
     return MATRIX_COLS;
 }
