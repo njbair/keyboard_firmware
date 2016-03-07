@@ -4,8 +4,8 @@ njbair's Keyboard Firmware Collection
 This is my personal TMK/QMK firmware repo, based on the work of others and
 including my own custom layouts.
 
-My Custom Layouts
------------------
+Quick Links
+-----------
 
 Here are some quick links to my custom TMK layouts in this repo for various
 boards:
@@ -15,6 +15,57 @@ boards:
 * [Filco Zero](keyboard/filco_zero/keymap_ansi.c)
 * [Planck](keyboard/planck/keymaps/njbair.c)
 * [USB to USB Converter](converter/usb_usb/keymap_njbair.c)
+
+------------------------------------------------------------------------
+
+Using this Repository
+=====================
+
+Unless you're me, you probably won't want to use this repo as-is right out of
+the box. But it could be a good starting point for managing your own personal
+keyboard firmware collection. Much care has been taken to structure this
+repository in a simple, meaningful, and maintainable way.
+
+Directory Structure
+-------------------
+
+```
+[root]
+|-- converter  # converter devices
+|-- keyboard
+|   |-- keyboard_a
+|   |   |-- keymaps
+|   |   |   |-- default.c 
+|   |   |   |-- otherlayout.c 
+|   |   |   `-- anotherlayout.c 
+|   |   |-- config.h
+|   |   |-- Makefile
+|   |   `-- [...]
+|   `-- keyboard_b
+|   `-- keyboard_c
+`-- modules
+    |-- tmk
+    |-- qmk
+    `-- [others]
+```
+
+### Modules
+
+This repository stores the core third-party firmware projects in the *modules*
+directory, along with some other necessary third-party repositories. The included modules can be found here:
+
+- [TMK Firmware](https://github.com/tmk/tmk_keyboard.git)
+- [QMK Firmware](https://github.com/jackhumbert/qmk_firmware.git)
+- [Flabbergast's ChibiOS fork](https://github.com/flabbergast/ChibiOS.git)
+
+The repositories are included as subtrees, so they can be updated using
+standard **git subtree** syntax, as follows:
+
+```shell
+$ git subtree pull --prefix module/tmk https://github.com/tmk/tmk_keyboard.git master --squash
+$ git subtree pull --prefix module/qmk https://github.com/jackhumbert/qmk_firmware.git master --squash
+$ git subtree pull --prefix module/chibios https://github.com/flabbergast/ChibiOS.git master --squash
+```
 
 Required Libraries
 ------------------
