@@ -13,6 +13,8 @@
     See the License for the specific language governing permissions and
     limitations under the License.
 */
+
+#include "ch.h"
 #include "hal.h"
 
 #if HAL_USE_PAL || defined(__DOXYGEN__)
@@ -32,19 +34,16 @@ const PALConfig pal_default_config =
              * PTA5  - PIN24
              * PTA12 - PIN3
              * PTA13 - PIN4
-             *
-             * PTA18/19 crystal
-             * PTA0/3 SWD
              */
             .port = IOPORT1,
             .pads = {
-                PAL_MODE_ALTERNATIVE_7,     PAL_MODE_UNCONNECTED,       PAL_MODE_UNCONNECTED,
-                PAL_MODE_ALTERNATIVE_7,     PAL_MODE_OUTPUT_PUSHPULL,   PAL_MODE_OUTPUT_PUSHPULL,
+                PAL_MODE_UNCONNECTED,       PAL_MODE_UNCONNECTED,       PAL_MODE_UNCONNECTED,
+                PAL_MODE_UNCONNECTED,       PAL_MODE_OUTPUT_PUSHPULL,   PAL_MODE_OUTPUT_PUSHPULL,
                 PAL_MODE_UNCONNECTED,       PAL_MODE_UNCONNECTED,       PAL_MODE_UNCONNECTED,
                 PAL_MODE_UNCONNECTED,       PAL_MODE_UNCONNECTED,       PAL_MODE_UNCONNECTED,
                 PAL_MODE_OUTPUT_PUSHPULL,   PAL_MODE_OUTPUT_PUSHPULL,   PAL_MODE_UNCONNECTED,
                 PAL_MODE_UNCONNECTED,       PAL_MODE_UNCONNECTED,       PAL_MODE_UNCONNECTED,
-                PAL_MODE_INPUT_ANALOG,      PAL_MODE_INPUT_ANALOG,      PAL_MODE_UNCONNECTED,
+                PAL_MODE_UNCONNECTED,       PAL_MODE_UNCONNECTED,       PAL_MODE_UNCONNECTED,
                 PAL_MODE_UNCONNECTED,       PAL_MODE_UNCONNECTED,       PAL_MODE_UNCONNECTED,
                 PAL_MODE_UNCONNECTED,       PAL_MODE_UNCONNECTED,       PAL_MODE_UNCONNECTED,
                 PAL_MODE_UNCONNECTED,       PAL_MODE_UNCONNECTED,       PAL_MODE_UNCONNECTED,
@@ -172,7 +171,7 @@ const PALConfig pal_default_config =
  */
 void __early_init(void) {
 
-  k20x_clock_init();
+  mk20d50_clock_init();
 }
 
 /**

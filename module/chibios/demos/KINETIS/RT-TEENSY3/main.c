@@ -27,7 +27,7 @@ static THD_FUNCTION(Thread1, arg) {
     (void)arg;
     chRegSetThreadName("LEDBlinker");
     while (true) {
-        palTogglePad(TEENSY_PIN13_IOPORT, TEENSY_PIN13);
+        palTogglePad(IOPORT3, PORTC_TEENSY_PIN13);
         chThdSleepMilliseconds(500);
     }
 }
