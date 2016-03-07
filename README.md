@@ -31,7 +31,7 @@ Directory Structure
 
 ```
 [root]
-|-- converter  # converter devices
+|-- converter
 |-- keyboard
 |   |-- keyboard_a
 |   |   |-- keymaps
@@ -49,6 +49,31 @@ Directory Structure
     `-- [others]
 ```
 
+### Keyboards & Converters
+
+The *converter* and *keyboard* directories are used to store per-device configurations. For a new project, I start by copying over something similar from the TMK collection. If you do this, be sure to change the `TMK_DIR` in the Makefile to point to the TMK core in the *modules* folder:
+
+    TMK_DIR = ../../module/tmk/tmk_core
+
+Next, I move all layout-specific keymap files to a newly-created *keymaps* directory, to help cut down on clutter and simplify file naming:
+
+```shell
+mkdir -p keymaps
+mv keymap_ansi.c keymaps/ansi.c
+```
+
+...then before you go any further, edit the Makefile and modify the keymap selection logic to work with this new file-naming scheme:
+
+```makefile
+ifdef KEYMAP
+    SRC := keymaps/$(KEYMAP).c $(SRC)
+else
+    SRC := keymaps/ansi.c $(SRC)
+endif
+```
+
+Now you should be good to go.
+
 ### Modules
 
 This repository stores the core third-party firmware projects in the *modules*
@@ -62,10 +87,37 @@ The repositories are included as subtrees, so they can be updated using
 standard **git subtree** syntax, as follows:
 
 ```shell
-$ git subtree pull --prefix module/tmk https://github.com/tmk/tmk_keyboard.git master --squash
-$ git subtree pull --prefix module/qmk https://github.com/jackhumbert/qmk_firmware.git master --squash
-$ git subtree pull --prefix module/chibios https://github.com/flabbergast/ChibiOS.git master --squash
+git subtree pull --prefix module/tmk https://github.com/tmk/tmk_keyboard.git master --squash
+git subtree pull --prefix module/qmk https://github.com/jackhumbert/qmk_firmware.git master --squash
+git subtree pull --prefix module/chibios https://github.com/flabbergast/ChibiOS.git master --squash
 ```
+
+I like to add the third-party repositories as named remotes in my local git repo:
+
+```shell
+git remote add tmk https://github.com/tmk/tmk_keyboard.git
+git remote add qmk https://github.com/jackhumbert/qmk_firmware.git
+git remote add chibios https://github.com/flabbergast/ChibiOS.git
+```
+
+...which makes pulling in updates that much easier:
+
+```shell
+git subtree pull --prefix module/tmk tmk master --squash
+git subtree pull --prefix module/qmk qmk master --squash
+git subtree pull --prefix module/chibios chibios master --squash
+```
+
+
+
+-----------------------------------------------------------------------
+
+Building & Flashing the Firmware
+================================
+
+I have only had success building the firmware on Linux. I tried Windows once
+but gave up and installed a VM running Ubuntu LTS. I recommend you do the
+same.
 
 Required Libraries
 ------------------
@@ -76,23 +128,20 @@ To build on Ubuntu, install the following libraries:
 - avr-libc
 - dfu-programmer
 
-### Additional required libraries for the Infinity Keyboard:
+Additional required libraries for ARM-based firmware (e.g., Infinity Keyboard):
 
-- dfu-util
+- dfu-util (required for flashing)
 - gcc-arm-none-eabi
 
 
 
-Building & Flashing the Firmware
---------------------------------
-
-### Linux
+### Building & Flashing in Linux
 
 To compile the firmware for a custom keymap stored in the file
-*keymap_njbair.c*, issue the following commands:
+*keymaps/hhkb.c*, issue the following commands:
 
     $ make clean
-    $ make KEYMAP=njbair
+    $ make KEYMAP=hhkb
 
 The process for flashing the firmware is different for each device. Most simply,
 to flash the firmware for an AVR controller in Linux, issue the following
@@ -104,11 +153,11 @@ For the Infinity, issue the following command:
 
     $ sudo dfu-util -D build/infinity.bin -d 1c11:b007
 
-### Windows
+### Building & Flashing in Windows
 
-At this point I haven't managed to successfully build TMK natively in Windows.
-Instead, I use a Ubuntu VM to build the firmware, then use Atmel's FLIP
-application to flash the .hex file.
+As mentioned above, at this point I haven't managed to successfully build TMK
+natively in Windows. Instead, I use a Ubuntu VM to build the firmware, then
+use Atmel's FLIP application to flash the .hex file.
 
 Initial setup:
 
