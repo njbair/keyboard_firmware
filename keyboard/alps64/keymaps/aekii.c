@@ -1,4 +1,6 @@
 #include "keymap_common.h"
+#include "macro.c"
+#include "function.c"
 
 const uint8_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     /* Default Layer
@@ -57,7 +59,7 @@ const uint8_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     GRV, F1,  F2,  F3,  F4,  F5,  F6,  F7,  F8,  F9,  F10, F11, F12, DEL,
     CAPS,NO,  NO,  NO,  NO,  NO,  NO,  NO,  PSCR,SLCK,PAUS,UP,  NO,  INS,
     TRNS,VOLD,VOLU,MUTE,NO,  NO,  PAST,PSLS,HOME,PGUP,LEFT,RGHT,TRNS,
-    TRNS,NO,  NO,  NO,  NO,  NO,  PPLS,PMNS,END, PGDN,DOWN,TRNS,
+    TRNS,FN20,NO,  NO,  NO,  NO,  PPLS,PMNS,END, PGDN,DOWN,TRNS,
     TRNS,TRNS,TRNS,               TRNS,                    TRNS,TRNS,TRNS
     ),
 
@@ -68,7 +70,7 @@ const uint8_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     NO,  NO,  NO,  FN1, NO,  NO,  NO,  NO,  NO,  NO,  NO,  NO,  NO,
     NO,  NO,  NO,  FN2, NO,  NO,  NO,  NO,  NO,  NO,  NO,  NO,
     NO,  NO,  NO,                 NO,                      NO,  NO,  NO
-    )
+    ),
 
     /* Standard Fn Keys */
     [31] = KEYMAP_AEK(
@@ -93,4 +95,5 @@ const uint16_t PROGMEM fn_actions[] = {
     [11] = ACTION_LAYER_TAP_KEY(30, KC_TAB),           // Layout selection layer
     [12] = ACTION_LAYER_TAP_KEY(20, KC_ENTER),         // HHKB layer
     [13] = ACTION_LAYER_TAP_KEY(20, KC_SPC),           // HHKB layer
+    [20] = ACTION_MACRO(SIGNATURE),                    // Forum auto-signature
 };
