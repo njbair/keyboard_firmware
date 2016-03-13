@@ -21,7 +21,7 @@ const uint8_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     TAB, Q,   W,   E,   R,   T,   Y,   U,   I,   O,   P,   LBRC,RBRC,BSLS,
     CAPS,A,   S,   D,   F,   G,   H,   J,   K,   L,   SCLN,QUOT,ENT,
     LSFT,Z,   X,   C,   V,   B,   N,   M,   COMM,DOT, SLSH,RSFT,
-    LCTL,LALT,LGUI,               SPC,                     FN10,RALT,RCTL
+    LCTL,LALT,LGUI,               SPC,                     FN16, RALT,RCTL
     ),
 
     /* Dvorak */
@@ -42,16 +42,7 @@ const uint8_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     TRNS,TRNS,TRNS,               TRNS,                    TRNS,TRNS,TRNS
     ),
 
-    /* Gamer Layout */
-    [3] = KEYMAP_AEK(
-    TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,
-    TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,
-    TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,
-    TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,
-    TRNS,TRNS,NO,                 TRNS,                    FN14,TRNS,TRNS
-    ),
-
-    /* HHKB mode (HHKB Fn)
+    /* HHKB function layer
      * ,-----------------------------------------------------------.
      * | ` | F1| F2| F3| F4| F5| F6| F7| F8| F9|F10|F11|F12|  Del  |
      * |-----------------------------------------------------------|
@@ -64,7 +55,7 @@ const uint8_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      * |Ctrl |Alt |GUI  |       Space             |Fn   |Alt |Ctrl |
      * `-----------------------------------------------------------'
      */
-    [20] = KEYMAP_AEK(
+    [8] = KEYMAP_AEK(
     GRV, F1,  F2,  F3,  F4,  F5,  F6,  F7,  F8,  F9,  F10, F11, F12, DEL,
     CAPS,NO,  NO,  NO,  NO,  NO,  NO,  NO,  PSCR,SLCK,PAUS,UP,  NO,  INS,
     TRNS,VOLD,VOLU,MUTE,NO,  NO,  PAST,PSLS,HOME,PGUP,LEFT,RGHT,TRNS,
@@ -72,22 +63,22 @@ const uint8_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     TRNS,TRNS,TRNS,               TRNS,                    TRNS,TRNS,TRNS
     ),
 
-    /* Layout selection layer */
-    [25] = KEYMAP_AEK(
-    NO,  FN1, FN2, FN3, NO,  NO,  NO,  NO,  NO,  NO,  FN0, NO,  NO,  NO,
-    NO,  FN0, NO,  NO,  NO,  NO,  NO,  NO,  NO,  NO,  NO,  NO,  NO,  NO,
-    NO,  NO,  NO,  FN1, NO,  FN3, NO,  NO,  NO,  NO,  NO,  NO,  NO,
-    NO,  NO,  NO,  FN2, NO,  NO,  NO,  NO,  NO,  NO,  NO,  NO,
-    NO,  NO,  NO,                 NO,                      NO,  NO,  NO
+    /* SpaceFn & EnterFn */
+    [24] = KEYMAP_AEK(
+    TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,
+    TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,
+    TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,FN9,
+    TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,
+    TRNS,TRNS,TRNS,               FN8,                     TRNS,TRNS,TRNS
     ),
 
-    /* Standard Fn Keys */
+    /* Keymap settings layer */
     [31] = KEYMAP_AEK(
-    TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,
-    FN11,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,
-    TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,FN12,
-    TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,
-    TRNS,TRNS,TRNS,               FN13,                    FN10,TRNS,TRNS
+    NO,  FN1, FN2, NO,  NO,  NO,  NO,  NO,  NO,  NO,  FN0, NO,  NO,  NO,
+    NO,  FN0, NO,  NO,  NO,  NO,  NO,  NO,  NO,  NO,  NO,  NO,  NO,  NO,
+    NO,  NO,  NO,  FN1, NO,  NO,  NO,  NO,  NO,  NO,  NO,  NO,  FN17,
+    NO,  NO,  NO,  FN2, NO,  NO,  NO,  NO,  NO,  NO,  NO,  NO,
+    NO,  NO,  NO,                 FN17,                    TRNS,NO,  NO
     ),
 };
 
@@ -97,18 +88,15 @@ const uint8_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * Fn action definition
  */
 const uint16_t PROGMEM fn_actions[] = {
-    //[0]  = ACTION_DEFAULT_LAYER_SET(0),                  // QWERTY layout
-    //[1]  = ACTION_DEFAULT_LAYER_SET(1),                  // Dvorak layout
-    //[2]  = ACTION_DEFAULT_LAYER_SET(2),                  // Colemak layout
-    //[3]  = ACTION_DEFAULT_LAYER_SET(2),                  // Gamer layout
-    [0]  = ACTION_FUNCTION(LAYOUT_QWERTY),               // QWERTY layout
-    [1]  = ACTION_FUNCTION(LAYOUT_DVORAK),               // Dvorak layout
-    [2]  = ACTION_FUNCTION(LAYOUT_COLEMAK),              // Colemak layout
-    [3]  = ACTION_FUNCTION(LAYOUT_GAMER),                // Gamer layout
-    [10] = ACTION_LAYER_TAP_KEY(25, KC_RGUI),            // Layout selection layer
-    [11] = ACTION_LAYER_TAP_KEY(25, KC_TAB),             // Layout selection layer
-    [12] = ACTION_LAYER_TAP_KEY(20, KC_ENTER),           // HHKB layer
-    [13] = ACTION_LAYER_TAP_KEY(20, KC_SPC),             // HHKB layer
-    [14] = ACTION_LAYER_MOMENTARY(25),                   // HHKB layer
+    [0]  = ACTION_DEFAULT_LAYER_SET(0),                  // QWERTY layout
+    [1]  = ACTION_DEFAULT_LAYER_SET(1),                  // Dvorak layout
+    [2]  = ACTION_DEFAULT_LAYER_SET(2),                  // Colemak layout
+
+    [8]  = ACTION_LAYER_TAP_KEY(8, KC_SPC),              // HHKB function layer
+    [9]  = ACTION_LAYER_TAP_KEY(8, KC_ENTER),            // HHKB function layer
+
+    [16] = ACTION_LAYER_TAP_KEY(31, KC_RGUI),            // Keymap settings layer
+    [17] = ACTION_LAYER_TOGGLE(24),                      // Toggle SpaceFN & EnterFn
+
     [20] = ACTION_MACRO(SIGNATURE),                      // Forum auto-signature
 };
