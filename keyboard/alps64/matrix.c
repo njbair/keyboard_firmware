@@ -76,6 +76,13 @@ void matrix_init(void)
     LED_ON();
     _delay_ms(500);
     LED_OFF();
+
+    /*
+     * enable other layers by default
+     *
+     * see user keymap file for more info
+     */
+     layer_on(24);
 }
 
 uint8_t matrix_scan(void)
