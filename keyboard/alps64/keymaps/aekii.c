@@ -73,12 +73,21 @@ const uint8_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     ),
 
     /* Keymap settings layer */
-    [31] = KEYMAP_AEK(
+    [30] = KEYMAP_AEK(
     NO,  FN1, FN2, NO,  NO,  NO,  NO,  NO,  NO,  NO,  FN0, NO,  NO,  NO,
     NO,  FN0, NO,  NO,  NO,  NO,  NO,  NO,  NO,  NO,  NO,  NO,  NO,  NO,
     NO,  NO,  NO,  FN1, NO,  NO,  NO,  NO,  NO,  NO,  NO,  NO,  FN17,
     NO,  NO,  NO,  FN2, NO,  NO,  NO,  NO,  NO,  NO,  NO,  NO,
     NO,  NO,  NO,                 FN17,                    TRNS,NO,  NO
+    ),
+
+    /* Primary Fn Layer */
+    [31] = KEYMAP_AEK(
+    TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,
+    TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,
+    TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,
+    TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,
+    TRNS,TRNS,TRNS,               TRNS,                    FN16,TRNS,TRNS
     ),
 };
 
@@ -88,15 +97,15 @@ const uint8_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * Fn action definition
  */
 const uint16_t PROGMEM fn_actions[] = {
-    [0]  = ACTION_DEFAULT_LAYER_SET(0),                  // QWERTY layout
-    [1]  = ACTION_DEFAULT_LAYER_SET(1),                  // Dvorak layout
-    [2]  = ACTION_DEFAULT_LAYER_SET(2),                  // Colemak layout
+    [0]  = ACTION_DEFAULT_LAYER_SET(0),             // QWERTY layout
+    [1]  = ACTION_DEFAULT_LAYER_SET(1),             // Dvorak layout
+    [2]  = ACTION_DEFAULT_LAYER_SET(2),             // Colemak layout
 
-    [8]  = ACTION_LAYER_TAP_KEY(8, KC_SPC),              // HHKB function layer
-    [9]  = ACTION_LAYER_TAP_KEY(8, KC_ENTER),            // HHKB function layer
+    [8]  = ACTION_LAYER_TAP_KEY(8, KC_SPC),         // HHKB function layer
+    [9]  = ACTION_LAYER_TAP_KEY(8, KC_ENTER),       // HHKB function layer
 
-    [16] = ACTION_LAYER_TAP_KEY(31, KC_RGUI),            // Keymap settings layer
-    [17] = ACTION_LAYER_TOGGLE(24),                      // Toggle SpaceFN & EnterFn
+    [16] = ACTION_LAYER_TAP_KEY(30, KC_RGUI),       // Keymap settings layer
+    [17] = ACTION_LAYER_TOGGLE(24),                 // Toggle SpaceFn & EnterFn
 
-    [20] = ACTION_MACRO(SIGNATURE),                      // Forum auto-signature
+    [20] = ACTION_MACRO(SIGNATURE),                 // Forum auto-signature
 };

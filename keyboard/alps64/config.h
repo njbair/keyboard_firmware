@@ -43,4 +43,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     keyboard_report->mods == (MOD_BIT(KC_LSHIFT) | MOD_BIT(KC_RSHIFT)) \
 )
 
+/* Enable these layers by default. See matrix.c for details */
+#define ENABLE_LAYERS \
+    [24] = 1, \
+    [31] = 1,
+
 #endif

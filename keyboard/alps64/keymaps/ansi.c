@@ -1,7 +1,10 @@
 #include "keymap_common.h"
+#include "macro.c"
+#include "function.c"
 
 const uint8_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
-    /* Default Layer
+    /**
+     * Default Layer
      * ,-----------------------------------------------------------.
      * |Esc|  1|  2|  3|  4|  5|  6|  7|  8|  9|  0|  -|  =|  Bsp  |
      * |-----------------------------------------------------------|
@@ -40,7 +43,8 @@ const uint8_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     TRNS,TRNS,TRNS,               TRNS,               TRNS,TRNS,TRNS,TRNS
     ),
 
-    /* HHKB mode (HHKB Fn)
+    /**
+     * HHKB function layer
      * ,-----------------------------------------------------------.
      * | ` | F1| F2| F3| F4| F5| F6| F7| F8| F9|F10|F11|F12|  Del  |
      * |-----------------------------------------------------------|
@@ -53,44 +57,57 @@ const uint8_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      * |Ctrl|GUI |Alt |       Space            |Alt |GUI |Fn  |Ctrl|
      * `-----------------------------------------------------------'
      */
-    [20] = KEYMAP_ANSI(
+    [8] = KEYMAP_ANSI(
     GRV, F1,  F2,  F3,  F4,  F5,  F6,  F7,  F8,  F9,  F10, F11, F12, DEL,
     CAPS,NO,  NO,  NO,  NO,  NO,  NO,  NO,  PSCR,SLCK,PAUS,UP,  NO,  INS,
     TRNS,VOLD,VOLU,MUTE,NO,  NO,  PAST,PSLS,HOME,PGUP,LEFT,RGHT,TRNS,
-    TRNS,NO,  NO,  NO,  NO,  NO,  PPLS,PMNS,END, PGDN,DOWN,TRNS,
+    TRNS,FN20,NO,  NO,  NO,  NO,  PPLS,PMNS,END, PGDN,DOWN,TRNS,
     TRNS,TRNS,TRNS,               TRNS,               TRNS,TRNS,TRNS,TRNS
     ),
 
-    /* Layout selection layer */
+    /* SpaceFn & EnterFn */
+    [24] = KEYMAP_ANSI(
+    TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,
+    TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,
+    TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,FN9,
+    TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,
+    TRNS,TRNS,TRNS,               FN8,                TRNS,TRNS,TRNS,TRNS
+    ),
+
+    /* Keymap settings layer */
     [30] = KEYMAP_ANSI(
     NO,  FN1, FN2, NO,  NO,  NO,  NO,  NO,  NO,  NO,  FN0, NO,  NO,  NO,
     NO,  FN0, NO,  NO,  NO,  NO,  NO,  NO,  NO,  NO,  NO,  NO,  NO,  NO,
-    NO,  NO,  NO,  FN1, NO,  NO,  NO,  NO,  NO,  NO,  NO,  NO,  NO,
+    NO,  NO,  NO,  FN1, NO,  NO,  NO,  NO,  NO,  NO,  NO,  NO,  FN17,
     NO,  NO,  NO,  FN2, NO,  NO,  NO,  NO,  NO,  NO,  NO,  NO,
-    NO,  NO,  NO,                 NO,                 NO,  NO,  NO,  NO
+    NO,  NO,  NO,                 FN17,               NO,  NO,  NO,  NO
     ),
 
-    /* Standard Fn Keys */
+    /* Primary Fn Layer */
     [31] = KEYMAP_ANSI(
     TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,
-    FN11,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,
-    TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,FN12,
+    TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,
+    TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,
     TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,
-    TRNS,TRNS,TRNS,               FN13,               TRNS,TRNS,FN10,TRNS
+    TRNS,TRNS,TRNS,               TRNS,               TRNS,TRNS,FN16,TRNS
     ),
 };
 
 
 
-/*
+/**
  * Fn action definition
  */
 const uint16_t PROGMEM fn_actions[] = {
-    [0]  = ACTION_DEFAULT_LAYER_SET(0),                // QWERTY layout
-    [1]  = ACTION_DEFAULT_LAYER_SET(1),                // Dvorak layout
-    [2]  = ACTION_DEFAULT_LAYER_SET(2),                // Colemak layout
-    [10] = ACTION_LAYER_TAP_KEY(30, KC_APP),           // Layout selection layer
-    [11] = ACTION_LAYER_TAP_KEY(30, KC_TAB),           // Layout selection layer
-    [12] = ACTION_LAYER_TAP_KEY(20, KC_ENTER),         // HHKB layer
-    [13] = ACTION_LAYER_TAP_KEY(20, KC_SPC),           // HHKB layer
+    [0]  = ACTION_DEFAULT_LAYER_SET(0),             // QWERTY layout
+    [1]  = ACTION_DEFAULT_LAYER_SET(1),             // Dvorak layout
+    [2]  = ACTION_DEFAULT_LAYER_SET(2),             // Colemak layout
+
+    [8]  = ACTION_LAYER_TAP_KEY(8, KC_SPC),         // HHKB function layer
+    [9]  = ACTION_LAYER_TAP_KEY(8, KC_ENTER),       // HHKB function layer
+
+    [16] = ACTION_LAYER_TAP_KEY(30, KC_APP),        // Keymap settings layer
+    [17] = ACTION_LAYER_TOGGLE(24),                 // Toggle SpaceFn & EnterFn
+
+    [20] = ACTION_MACRO(SIGNATURE),                 // Forum auto-signature
 };
