@@ -3,7 +3,8 @@
 #include "function.c"
 
 const uint8_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
-    /* Default Layer
+    /**
+     * Default Layer
      * ,-----------------------------------------------------------.
      * |Esc|  1|  2|  3|  4|  5|  6|  7|  8|  9|  0|  -|  =|  Bsp  |
      * |-----------------------------------------------------------|
@@ -42,7 +43,8 @@ const uint8_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     TRNS,TRNS,TRNS,               TRNS,                    TRNS,TRNS,TRNS
     ),
 
-    /* HHKB function layer
+    /**
+     * HHKB function layer
      * ,-----------------------------------------------------------.
      * | ` | F1| F2| F3| F4| F5| F6| F7| F8| F9|F10|F11|F12|  Del  |
      * |-----------------------------------------------------------|
@@ -93,7 +95,7 @@ const uint8_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 
 
-/*
+/**
  * Fn action definition
  */
 const uint16_t PROGMEM fn_actions[] = {
