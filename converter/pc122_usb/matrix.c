@@ -92,7 +92,6 @@ void matrix_init(void)
     for (uint8_t i=0; i < MATRIX_ROWS; i++) matrix[i] = 0x00;
 
 #ifdef CONFIG_H_DEFAULT_LAYER
-#warning "default layer detected"
     uint8_t default_layer = 0;
     int config_h_default_layer[1] = { CONFIG_H_DEFAULT_LAYER };
     default_layer |= (1<<config_h_default_layer[0]);

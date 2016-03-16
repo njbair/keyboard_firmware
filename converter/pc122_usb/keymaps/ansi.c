@@ -30,7 +30,7 @@ const uint8_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     FN21,LGUI,TAB, Q,   W,   E,   R,   T,   Y,   U,   I,   O,   P,   LBRC,RBRC,BSLS,     DEL, END, PGDN,    P7,  P8,  P9,
     FN22,RGUI,CAPS,A,   S,   D,   F,   G,   H,   J,   K,   L,   SCLN,QUOT,ENT,                UP,           P4,  P5,  P6,  PPLS,
     FN23,APP, LSFT,Z,   X,   C,   V,   B,   N,   M,   COMM,DOT, SLSH,RSFT,               LEFT,NO,  RGHT,    P1,  P2,  P3,
-    FN24,FN25,LCTL,     LALT,               SPC,                RALT,     RCTL,               DOWN,         P0,       PDOT,PENT
+    FN24,FN18,LCTL,     LALT,               SPC,                RALT,     RCTL,               DOWN,         P0,       PDOT,PENT
     ),
 
     /* Dvorak */
@@ -105,6 +105,17 @@ const uint8_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,               TRNS,TRNS,TRNS,    TRNS,TRNS,TRNS,
     TRNS,TRNS,TRNS,     TRNS,               FN8,                TRNS,     TRNS,               TRNS,         TRNS,     TRNS,TRNS
     ),
+    
+    /* Mouse keys */
+    [25] = KEYMAP(
+              TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,
+              TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,
+    TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,     TRNS,WH_U,TRNS,    TRNS,TRNS,TRNS,TRNS,
+    TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,     BTN1,WH_D,BTN2,    TRNS,TRNS,TRNS,
+    TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,               MS_U,         TRNS,TRNS,TRNS,TRNS,
+    TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,               MS_L,BTN1,MS_R,    TRNS,TRNS,TRNS,
+    TRNS,TRNS,TRNS,     TRNS,               TRNS,               TRNS,     TRNS,               MS_D,         TRNS,     TRNS,TRNS
+    ),
 
     /* Keymap settings layer */
     [30] = KEYMAP(
@@ -139,6 +150,7 @@ const uint16_t PROGMEM fn_actions[] = {
 
     [16] = ACTION_LAYER_MOMENTARY(30),              // Keymap settings layer
     [17] = ACTION_LAYER_TOGGLE(24),                 // Toggle SpaceFn & EnterFn
+    [18] = ACTION_LAYER_TAP_TOGGLE(25),             // Toggle Mousekey layer
 
     [20] = ACTION_MACRO(SIGNATURE),                 // Forum auto-signature
     [21] = ACTION_FUNCTION(LED_DANCE),              // Make the LEDs do a dance
