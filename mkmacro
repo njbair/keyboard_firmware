@@ -1,0 +1,153 @@
+#!/usr/bin/env python3
+
+import sys, optparse, re
+
+class MacroGenerator:
+    characterMap = {
+    }
+
+    def __init__(self):
+        self.optionParser = optparse.OptionParser(
+            usage = "%prog [options] [filename]",
+            version = "%prog 1.0")
+
+        self.optionParser.add_option("-v", "--verbose", dest = "verbose",
+            action = "store_true", default=False, help="print verbose output")
+        self.optionParser.add_option("-i", "--interval", dest = "interval",
+            type = "int", default = 32, help = "keystroke interval")
+        self.optionParser.add_option("-n", "--newline-interval", dest = "newlineInterval",
+            type = "int", default = 128, help = "interval following newline characters")
+        self.optionParser.add_option("-m", "--multiline-interval", dest = "multilineInterval",
+            type = "int", default = 0, help = "interval between multiple newline characters")
+
+        self.options, self.args = self.optionParser.parse_args()
+
+    @staticmethod
+    def readFile(filename):
+        if filename == "-":
+            theString = sys.stdin.read()
+        else:
+            theFile = open(filename, "r")
+            theString = theFile.read()
+
+        return theString
+
+    def generate(self, inputString, outputString):
+        def handleNewlines(string):
+            output = []
+            newlines = re.search("(\r?\n)", string)
+            while re.search("(\r?\n)", string):
+                # this part only works for the first item
+                if not output:
+                    output.append("I(0)")
+                    output.append("T(ENTER)")
+                else:
+                    output.append("W(%s)" % self.options.multilineInterval)
+                    output.append("T(ENTER)")
+                string = re.sub("(\r?\n)", "", string, count=1)
+            output.append("W(%s)" % str(self.options.newlineInterval))
+            output.append("I(%s)" % str(self.options.interval))
+            return output
+        def handleUppercase(string):
+            return ["D(LSHIFT)", "T(%s)" % string, "U(LSHIFT)"]
+        def handleLowercase(string):
+            return ["T(%s)" % string.upper()]
+        def handleNumber(string):
+            return ["T(%s)" % string]
+        def handleSymbol(string):
+            symbols = {
+                " ":  ["T(SPACE)"],
+                "`":  ["T(GRV)"],
+                "~":  ["D(LSHIFT)", "T(GRV)", "U(LSHIFT)"],
+                "!":  ["D(LSHIFT)", "T(1)", "U(LSHIFT)"],
+                "@":  ["D(LSHIFT)", "T(2)", "U(LSHIFT)"],
+                "#":  ["D(LSHIFT)", "T(3)", "U(LSHIFT)"],
+                "$":  ["D(LSHIFT)", "T(4)", "U(LSHIFT)"],
+                "%":  ["D(LSHIFT)", "T(5)", "U(LSHIFT)"],
+                "^":  ["D(LSHIFT)", "T(6)", "U(LSHIFT)"],
+                "&":  ["D(LSHIFT)", "T(7)", "U(LSHIFT)"],
+                "*":  ["D(LSHIFT)", "T(8)", "U(LSHIFT)"],
+                "(":  ["D(LSHIFT)", "T(9)", "U(LSHIFT)"],
+                ")":  ["D(LSHIFT)", "T(0)", "U(LSHIFT)"],
+                "-":  ["T(MINS)"],
+                "_":  ["D(LSHIFT)", "T(MINS)", "U(LSHIFT)"],
+                "=":  ["T(EQL)"],
+                "+":  ["D(LSHIFT)", "T(EQL)", "U(LSHIFT)"],
+                ",":  ["T(COMMA)"],
+                "<":  ["D(LSHIFT)", "T(COMM)", "U(LSHIFT)"],
+                ".":  ["T(DOT)"],
+                ">":  ["D(LSHIFT)", "T(DOT)", "U(LSHIFT)"],
+                "/":  ["T(SLSH)"],
+                "?":  ["D(LSHIFT)", "T(SLSH)", "U(LSHIFT)"],
+                "[":  ["T(LBRC)"],
+                "{":  ["D(LSHIFT)", "T(LBRC)", "U(LSHIFT)"],
+                "]":  ["T(RBRC)"],
+                "}":  ["D(LSHIFT)", "T(RBRC)", "U(LSHIFT)"],
+                "\\": ["T(BSLS)"],
+                "|":  ["D(LSHIFT)", "T(BSLS)", "U(LSHIFT)"],
+                ";":  ["T(SCLN)"],
+                ":":  ["D(LSHIFT)", "T(SCLN)", "U(LSHIFT)"],
+                "'":  ["T(QUOT)"],
+                "\"": ["D(LSHIFT)", "T(QUOT)", "U(LSHIFT)"],
+            }
+            return symbols[string]
+
+        patterns = (
+            {
+                "pattern": "^(\r?\n)+",
+                "handler": handleNewlines
+            },
+            {
+                "pattern": "^[A-Z]",
+                "handler": handleUppercase
+            },
+            {
+                "pattern": "^[a-z]",
+                "handler": handleLowercase
+            },
+            {
+                "pattern": "^[0-9]",
+                "handler": handleNumber
+            },
+            {
+                "pattern": "^[^A-Za-z0-9\r\n]",
+                "handler": handleSymbol
+            }
+        )
+
+        if inputString != "":
+            for p in patterns:
+                match = re.search(p["pattern"], inputString)
+                if match:
+                    newOutput = ",".join(p["handler"](match.group(0)))
+                    outputString = ",".join((outputString, newOutput))
+                    inputString = re.sub(p["pattern"], "", inputString, count=1)
+                    outputString = self.generate(inputString, outputString)
+                    break;
+
+            if not match: print("No match found for `%s'" % inputString[0])
+        else:
+            outputString = ",".join((outputString, "END"))
+
+        return outputString
+
+    def run(self):
+        if len(self.args) > 1:
+            self.optionParser.error("too many arguments")
+        elif len(self.args) == 0:
+            inputFile = "-"
+        else:
+            inputFile = self.args[0]
+
+        outputString = "I(%s)" % str(self.options.interval)
+
+        inputString = self.readFile(inputFile)
+        outputString = self.generate(inputString, outputString)
+        print(outputString)
+
+def main():
+    gen = MacroGenerator()
+
+    gen.run()
+
+main()

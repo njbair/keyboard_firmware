@@ -84,7 +84,7 @@ void matrix_init(void)
      * The default layer is defined in EEPROM and configurable via boot magic
      * commands. But sometimes you want to enable other layers by default as
      * well. You can do that by defining the ENABLE_LAYERS macro in your
-     * keymap file.
+     * config.h file.
      */
     int enable_layers[32] = { ENABLE_LAYERS };
     int i;
