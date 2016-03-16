@@ -32,7 +32,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 extern const uint8_t keymaps[][MATRIX_ROWS][MATRIX_COLS];
 extern const uint16_t fn_actions[];
 
-
+/**
+ * Unicomp PC-122 scancode matrix
+ *
+ * Based on the excellent information at http://www.seasip.info/Misc/1227T.html
+ */
 #define KEYMAP( \
               K1F, K27, K2F, K5E, K08, K10, K18, K20, K28, K30, K38, K40, \
               K05, K06, K04, K0C, K03, K0B, K83, K0A, K01, K09, K78, K07, \
