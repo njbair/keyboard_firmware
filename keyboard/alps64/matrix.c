@@ -76,6 +76,25 @@ void matrix_init(void)
     LED_ON();
     _delay_ms(500);
     LED_OFF();
+
+#ifdef ENABLE_LAYERS
+    /**
+     * Enable layers by default
+     *
+     * The default layer is defined in EEPROM and configurable via boot magic
+     * commands. But sometimes you want to enable other layers by default as
+     * well. You can do that by defining the ENABLE_LAYERS macro in your
+     * keymap file.
+     */
+    int enable_layers[32] = { ENABLE_LAYERS };
+    int i;
+
+    for (i=0; i<32; i++) {
+        if (enable_layers[i] == 1) {
+            layer_on(i);
+        }
+    }
+#endif
 }
 
 uint8_t matrix_scan(void)
