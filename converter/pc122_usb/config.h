@@ -172,9 +172,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 /* Enable these layers by default. See matrix.c for details */
 #define CONFIG_H_ENABLE_LAYERS \
-    [16] = 1, \
-    [24] = 1, \
-    [31] = 1,
+    [4] = 1, \
+    [5] = 1, \
+    [8] = 1,
 
 /* Set the default layer because no Boot Magic (boo!) */
 #define CONFIG_H_DEFAULT_LAYER 1

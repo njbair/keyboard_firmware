@@ -26,11 +26,11 @@ const uint8_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [0] = KEYMAP(
               WBAK,WFWD,WHOM,MPLY,MPRV,MNXT,MSTP,VOLD,VOLU,PSCR,SLCK,PAUS,
               F1,  F2,  F3,  F4,  F5,  F6,  F7,  F8,  F9,  F10, F11, F12,
-    FN20,GRV, ESC, 1,   2,   3,   4,   5,   6,   7,   8,   9,   0,   MINS,EQL, BSPC,     INS, HOME,PGUP,    NLCK,PSLS,PAST,PMNS,
+    FN8, GRV, ESC, 1,   2,   3,   4,   5,   6,   7,   8,   9,   0,   MINS,EQL, BSPC,     INS, HOME,PGUP,    NLCK,PSLS,PAST,PMNS,
     FN21,LGUI,TAB, Q,   W,   E,   R,   T,   Y,   U,   I,   O,   P,   LBRC,RBRC,BSLS,     DEL, END, PGDN,    P7,  P8,  P9,
     FN22,RGUI,CAPS,A,   S,   D,   F,   G,   H,   J,   K,   L,   SCLN,QUOT,ENT,                UP,           P4,  P5,  P6,  PPLS,
     FN23,APP, LSFT,Z,   X,   C,   V,   B,   N,   M,   COMM,DOT, SLSH,RSFT,               LEFT,NO,  RGHT,    P1,  P2,  P3,
-    FN24,FN18,LCTL,     LALT,               SPC,                RALT,     RCTL,               DOWN,         P0,       PDOT,PENT
+    FN24,FN7, LCTL,     LALT,               SPC,                RALT,     RCTL,               DOWN,         P0,       PDOT,PENT
     ),
 
     /* Dvorak */
@@ -69,13 +69,13 @@ const uint8_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      * |Ctrl|GUI |Alt |       Space            |Alt |GUI |Fn  |Ctrl|
      * `-----------------------------------------------------------'
      */
-    [8] = KEYMAP(
+    [3] = KEYMAP(
               TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,
               TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,
     TRNS,TRNS,GRV, F1,  F2,  F3,  F4,  F5,  F6,  F7,  F8,  F9,  F10, F11, F12, DEL,      TRNS,TRNS,TRNS,    TRNS,TRNS,TRNS,TRNS,
     TRNS,TRNS,CAPS,NO,  NO,  NO,  NO,  NO,  NO,  NO,  PSCR,SLCK,PAUS,UP,  NO,  INS,      TRNS,TRNS,TRNS,    TRNS,TRNS,TRNS,
     TRNS,TRNS,TRNS,VOLD,VOLU,MUTE,NO,  NO,  PAST,PSLS,HOME,PGUP,LEFT,RGHT,TRNS,               TRNS,         TRNS,TRNS,TRNS,TRNS,
-    TRNS,TRNS,TRNS,FN20,NO,  NO,  NO,  NO,  PPLS,PMNS,END, PGDN,DOWN,TRNS,               TRNS,TRNS,TRNS,    TRNS,TRNS,TRNS,
+    TRNS,TRNS,TRNS,FN8, NO,  NO,  NO,  NO,  PPLS,PMNS,END, PGDN,DOWN,TRNS,               TRNS,TRNS,TRNS,    TRNS,TRNS,TRNS,
     TRNS,TRNS,TRNS,     TRNS,               TRNS,               TRNS,     TRNS,               TRNS,         TRNS,     TRNS,TRNS
     ),
 
@@ -85,7 +85,7 @@ const uint8_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      * The converter doesn't have Boot Magic (boo!) so instead we need to change
      * some options manually.
      */
-    [16] = KEYMAP(
+    [4] = KEYMAP(
               TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,
               TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,
     TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,     TRNS,TRNS,TRNS,    TRNS,TRNS,TRNS,TRNS,
@@ -96,18 +96,18 @@ const uint8_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     ),
 
     /* SpaceFn & EnterFn */
-    [24] = KEYMAP(
+    [5] = KEYMAP(
               TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,
               TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,
     TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,     TRNS,TRNS,TRNS,    TRNS,TRNS,TRNS,TRNS,
     TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,     TRNS,TRNS,TRNS,    TRNS,TRNS,TRNS,
-    TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,FN9,                TRNS,         TRNS,TRNS,TRNS,TRNS,
+    TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,FN4,                TRNS,         TRNS,TRNS,TRNS,TRNS,
     TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,               TRNS,TRNS,TRNS,    TRNS,TRNS,TRNS,
-    TRNS,TRNS,TRNS,     TRNS,               FN8,                TRNS,     TRNS,               TRNS,         TRNS,     TRNS,TRNS
+    TRNS,TRNS,TRNS,     TRNS,               FN3,                TRNS,     TRNS,               TRNS,         TRNS,     TRNS,TRNS
     ),
-    
+
     /* Mouse keys */
-    [25] = KEYMAP(
+    [6] = KEYMAP(
               TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,
               TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,
     TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,     TRNS,WH_U,TRNS,    TRNS,TRNS,TRNS,TRNS,
@@ -118,40 +118,40 @@ const uint8_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     ),
 
     /* Keymap settings layer */
-    [30] = KEYMAP(
-              TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,
-              TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,
-    TRNS,TRNS,FN1, FN2, TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,FN0, TRNS,TRNS,TRNS,TRNS,     TRNS,TRNS,TRNS,    TRNS,TRNS,TRNS,TRNS,
-    TRNS,TRNS,FN0, TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,     TRNS,TRNS,TRNS,    TRNS,TRNS,TRNS,
-    TRNS,TRNS,TRNS,TRNS,FN1, TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,FN17,               TRNS,         TRNS,TRNS,TRNS,TRNS,
-    TRNS,TRNS,TRNS,TRNS,FN2, TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,               TRNS,TRNS,TRNS,    TRNS,TRNS,TRNS,
-    TRNS,TRNS,TRNS,     TRNS,               FN17,               TRNS,     TRNS,               TRNS,         TRNS,     TRNS,TRNS
+    [7] = KEYMAP(
+              NO,  NO,  NO,  NO,  NO,  NO,  NO,  NO,  NO,  NO,  NO,  NO,
+              NO,  NO,  NO,  NO,  NO,  NO,  NO,  NO,  NO,  NO,  NO,  NO,
+    NO,  NO,  FN1, FN2, NO,  NO,  NO,  NO,  NO,  NO,  NO,  FN0, NO,  NO,  NO,  NO,       NO,  NO,  NO,      NO,  NO,  NO,  NO,
+    NO,  NO,  FN0, NO,  NO,  NO,  NO,  NO,  NO,  NO,  NO,  NO,  NO,  NO,  NO,  NO,       NO,  NO,  NO,      NO,  NO,  NO,
+    NO,  NO,  NO,  NO,  FN1, NO,  NO,  NO,  NO,  NO,  NO,  NO,  NO,  NO,  FN6,                NO,           NO,  NO,  NO,  NO,
+    NO,  NO,  NO,  NO,  FN2, NO,  NO,  NO,  NO,  NO,  NO,  NO,  NO,  NO,                 NO,  NO,  NO,      NO,  NO,  NO,
+    NO,  NO,  NO,       NO,                 FN6,                NO,       NO,                 NO,           NO,       NO,  TRNS
     ),
 
     /* Primary Fn layer */
-    [31] = KEYMAP(
+    [8] = KEYMAP(
               TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,
               TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,
     TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,     TRNS,TRNS,TRNS,    TRNS,TRNS,TRNS,TRNS,
     TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,     TRNS,TRNS,TRNS,    TRNS,TRNS,TRNS,
     TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,               TRNS,         TRNS,TRNS,TRNS,TRNS,
     TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,               TRNS,TRNS,TRNS,    TRNS,TRNS,TRNS,
-    TRNS,TRNS,TRNS,     TRNS,               TRNS,               FN16,     TRNS,               TRNS,         TRNS,     TRNS,TRNS
+    TRNS,TRNS,TRNS,     TRNS,               TRNS,               FN5,      TRNS,               TRNS,         TRNS,     TRNS,TRNS
     ),
 };
 
 const uint16_t PROGMEM fn_actions[] = {
-    [0]  = ACTION_DEFAULT_LAYER_SET(0),             // QWERTY layout
-    [1]  = ACTION_DEFAULT_LAYER_SET(1),             // Dvorak layout
-    [2]  = ACTION_DEFAULT_LAYER_SET(2),             // Colemak layout
+    [0]  = ACTION_DEFAULT_LAYER_SET(0),         // QWERTY layout
+    [1]  = ACTION_DEFAULT_LAYER_SET(1),         // Dvorak layout
+    [2]  = ACTION_DEFAULT_LAYER_SET(2),        // Colemak layout
 
-    [8]  = ACTION_LAYER_TAP_KEY(8, KC_SPC),         // HHKB function layer
-    [9]  = ACTION_LAYER_TAP_KEY(8, KC_ENTER),       // HHKB function layer
+    [3]  = ACTION_LAYER_TAP_KEY(3, KC_SPC),    // HHKB function layer
+    [4]  = ACTION_LAYER_TAP_KEY(3, KC_ENTER),  // HHKB function layer
 
-    [16] = ACTION_LAYER_MOMENTARY(30),              // Keymap settings layer
-    [17] = ACTION_LAYER_TOGGLE(24),                 // Toggle SpaceFn & EnterFn
-    [18] = ACTION_LAYER_TAP_TOGGLE(25),             // Toggle Mousekey layer
+    [5] = ACTION_LAYER_MOMENTARY(7),          // Keymap settings layer
+    [6] = ACTION_LAYER_TOGGLE(5),              // Toggle SpaceFn & EnterFn
+    [7] = ACTION_LAYER_TAP_TOGGLE(6),         // Toggle Mousekey layer
 
-    [20] = ACTION_MACRO(SIGNATURE),                 // Forum auto-signature
-    [21] = ACTION_FUNCTION(LED_DANCE),              // Make the LEDs do a dance
+    [8] = ACTION_MACRO(SIGNATURE),                     // Forum auto-signature
+    [9] = ACTION_FUNCTION(LED_DANCE),                  // Make the LEDs do a dance
 };
