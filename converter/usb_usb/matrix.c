@@ -48,10 +48,42 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define COL(code)       ((code) & COL_MASK)
 #define ROW_BITS(code)  (1 << COL(code))
 
-
 uint8_t matrix_rows(void) { return MATRIX_ROWS; }
 uint8_t matrix_cols(void) { return MATRIX_COLS; }
-void matrix_init(void) {}
+#ifdef CONFIG_H_DEFAULT_LAYER
+void default_layer_set(uint32_t state);
+#endif
+#ifdef CONFIG_H_ENABLE_LAYERS
+void layer_on(uint8_t layer);
+#endif
+
+void matrix_init(void) {
+#ifdef CONFIG_H_DEFAULT_LAYER
+    uint8_t default_layer = 0;
+    int config_h_default_layer[1] = { CONFIG_H_DEFAULT_LAYER };
+    default_layer |= (1<<config_h_default_layer[0]);
+    default_layer_set((uint32_t)default_layer);
+#endif
+
+#ifdef CONFIG_H_ENABLE_LAYERS
+    /**
+     * Enable layers by default
+     *
+     * The default layer is defined in EEPROM and configurable via boot magic
+     * commands. But sometimes you want to enable other layers by default as
+     * well. You can do that by defining the ENABLE_LAYERS macro in your
+     * config.h file.
+     */
+    int enable_layers[32] = { CONFIG_H_ENABLE_LAYERS };
+    int i;
+
+    for (i=0; i<32; i++) {
+        if (enable_layers[i] == 1) {
+            layer_on(i);
+        }
+    }
+#endif
+}
 bool matrix_has_ghost(void) { return false; }
 
 static bool matrix_is_mod =false;

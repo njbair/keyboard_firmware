@@ -141,17 +141,17 @@ const uint8_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 };
 
 const uint16_t PROGMEM fn_actions[] = {
-    [0]  = ACTION_DEFAULT_LAYER_SET(0),         // QWERTY layout
-    [1]  = ACTION_DEFAULT_LAYER_SET(1),         // Dvorak layout
-    [2]  = ACTION_DEFAULT_LAYER_SET(2),        // Colemak layout
+    [0] = ACTION_DEFAULT_LAYER_SET(0),        // QWERTY layout
+    [1] = ACTION_DEFAULT_LAYER_SET(1),        // Dvorak layout
+    [2] = ACTION_DEFAULT_LAYER_SET(2),        // Colemak layout
 
-    [3]  = ACTION_LAYER_TAP_KEY(3, KC_SPC),    // HHKB function layer
-    [4]  = ACTION_LAYER_TAP_KEY(3, KC_ENTER),  // HHKB function layer
+    [3] = ACTION_LAYER_TAP_KEY(3, KC_SPC),    // HHKB function layer
+    [4] = ACTION_LAYER_TAP_KEY(3, KC_ENTER),  // HHKB function layer
 
     [5] = ACTION_LAYER_MOMENTARY(7),          // Keymap settings layer
-    [6] = ACTION_LAYER_TOGGLE(5),              // Toggle SpaceFn & EnterFn
+    [6] = ACTION_LAYER_TOGGLE(5),             // Toggle SpaceFn & EnterFn
     [7] = ACTION_LAYER_TAP_TOGGLE(6),         // Toggle Mousekey layer
 
-    [8] = ACTION_MACRO(SIGNATURE),                     // Forum auto-signature
-    [9] = ACTION_FUNCTION(LED_DANCE),                  // Make the LEDs do a dance
+    [8] = ACTION_MACRO(SIGNATURE),            // Forum auto-signature
+    [9] = ACTION_FUNCTION(LED_DANCE),         // Make the LEDs do a dance
 };
