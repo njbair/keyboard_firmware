@@ -44,8 +44,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 )
 
 /* Enable these layers by default. See matrix.c for details */
-#define ENABLE_LAYERS \
-    [24] = 1, \
-    [31] = 1,
+#define CONFIG_H_ENABLE_LAYERS \
+    [4] = 1, \
+    [6] = 1
 
 #endif

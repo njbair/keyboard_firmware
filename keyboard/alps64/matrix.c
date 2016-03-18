@@ -41,6 +41,9 @@ static matrix_row_t read_cols(void);
 static void init_cols(void);
 static void unselect_rows(void);
 static void select_row(uint8_t row);
+#ifdef CONFIG_H_ENABLE_LAYERS
+void layer_on(uint8_t layer);
+#endif
 
 
 inline
@@ -77,16 +80,16 @@ void matrix_init(void)
     _delay_ms(500);
     LED_OFF();
 
-#ifdef ENABLE_LAYERS
+#ifdef CONFIG_H_ENABLE_LAYERS
     /**
      * Enable layers by default
      *
      * The default layer is defined in EEPROM and configurable via boot magic
      * commands. But sometimes you want to enable other layers by default as
-     * well. You can do that by defining the ENABLE_LAYERS macro in your
+     * well. You can do that by defining the CONFIG_H_ENABLE_LAYERS macro in your
      * config.h file.
      */
-    int enable_layers[32] = { ENABLE_LAYERS };
+    int enable_layers[32] = { CONFIG_H_ENABLE_LAYERS };
     int i;
 
     for (i=0; i<32; i++) {

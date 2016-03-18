@@ -22,7 +22,7 @@ const uint8_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     TAB, Q,   W,   E,   R,   T,   Y,   U,   I,   O,   P,   LBRC,RBRC,BSLS,
     CAPS,A,   S,   D,   F,   G,   H,   J,   K,   L,   SCLN,QUOT,ENT,
     LSFT,Z,   X,   C,   V,   B,   N,   M,   COMM,DOT, SLSH,RSFT,
-    LCTL,LALT,LGUI,               SPC,                     FN16, RALT,RCTL
+    LCTL,LALT,LGUI,               SPC,                     RGUI,RALT,RCTL
     ),
 
     /* Dvorak */
@@ -57,7 +57,7 @@ const uint8_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      * |Ctrl |Alt |GUI  |       Space             |Fn   |Alt |Ctrl |
      * `-----------------------------------------------------------'
      */
-    [8] = KEYMAP_AEK(
+    [3] = KEYMAP_AEK(
     GRV, F1,  F2,  F3,  F4,  F5,  F6,  F7,  F8,  F9,  F10, F11, F12, DEL,
     CAPS,NO,  NO,  NO,  NO,  NO,  NO,  NO,  PSCR,SLCK,PAUS,UP,  NO,  INS,
     TRNS,VOLD,VOLU,MUTE,NO,  NO,  PAST,PSLS,HOME,PGUP,LEFT,RGHT,TRNS,
@@ -66,30 +66,30 @@ const uint8_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     ),
 
     /* SpaceFn & EnterFn */
-    [24] = KEYMAP_AEK(
+    [4] = KEYMAP_AEK(
     TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,
     TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,
-    TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,FN9,
+    TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,FN4,
     TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,
-    TRNS,TRNS,TRNS,               FN8,                     TRNS,TRNS,TRNS
+    TRNS,TRNS,TRNS,               FN3,                     TRNS,TRNS,TRNS
     ),
 
     /* Keymap settings layer */
-    [30] = KEYMAP_AEK(
+    [5] = KEYMAP_AEK(
     NO,  FN1, FN2, NO,  NO,  NO,  NO,  NO,  NO,  NO,  FN0, NO,  NO,  NO,
     NO,  FN0, NO,  NO,  NO,  NO,  NO,  NO,  NO,  NO,  NO,  NO,  NO,  NO,
-    NO,  NO,  NO,  FN1, NO,  NO,  NO,  NO,  NO,  NO,  NO,  NO,  FN17,
+    NO,  NO,  NO,  FN1, NO,  NO,  NO,  NO,  NO,  NO,  NO,  NO,  FN7,
     NO,  NO,  NO,  FN2, NO,  NO,  NO,  NO,  NO,  NO,  NO,  NO,
-    NO,  NO,  NO,                 FN17,                    TRNS,NO,  NO
+    NO,  NO,  NO,                 FN7,                     NO,  NO,  NO
     ),
 
     /* Primary Fn Layer */
-    [31] = KEYMAP_AEK(
+    [6] = KEYMAP_AEK(
     TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,
     TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,
     TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,
     TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,
-    TRNS,TRNS,TRNS,               TRNS,                    FN16,TRNS,TRNS
+    TRNS,TRNS,TRNS,               TRNS,                    FN6, TRNS,TRNS
     ),
 };
 
@@ -103,11 +103,11 @@ const uint16_t PROGMEM fn_actions[] = {
     [1]  = ACTION_DEFAULT_LAYER_SET(1),             // Dvorak layout
     [2]  = ACTION_DEFAULT_LAYER_SET(2),             // Colemak layout
 
-    [8]  = ACTION_LAYER_TAP_KEY(8, KC_SPC),         // HHKB function layer
-    [9]  = ACTION_LAYER_TAP_KEY(8, KC_ENTER),       // HHKB function layer
+    [3]  = ACTION_LAYER_TAP_KEY(3, KC_SPC),         // HHKB function layer
+    [4]  = ACTION_LAYER_TAP_KEY(3, KC_ENTER),       // HHKB function layer
 
-    [16] = ACTION_LAYER_TAP_KEY(30, KC_RGUI),       // Keymap settings layer
-    [17] = ACTION_LAYER_TOGGLE(24),                 // Toggle SpaceFn & EnterFn
+    [6]  = ACTION_LAYER_TAP_KEY(5, KC_RGUI),        // Keymap settings layer
+    [7]  = ACTION_LAYER_TOGGLE(4),                  // Toggle SpaceFn & EnterFn
 
-    [20] = ACTION_MACRO(SIGNATURE),                 // Forum auto-signature
+    [8]  = ACTION_MACRO(SIGNATURE),                 // Forum auto-signature
 };

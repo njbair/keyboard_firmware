@@ -57,7 +57,7 @@ const uint8_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      * |Ctrl|GUI |Alt |       Space            |Alt |GUI |Fn  |Ctrl|
      * `-----------------------------------------------------------'
      */
-    [8] = KEYMAP_ANSI(
+    [3] = KEYMAP_ANSI(
     GRV, F1,  F2,  F3,  F4,  F5,  F6,  F7,  F8,  F9,  F10, F11, F12, DEL,
     CAPS,NO,  NO,  NO,  NO,  NO,  NO,  NO,  PSCR,SLCK,PAUS,UP,  NO,  INS,
     TRNS,VOLD,VOLU,MUTE,NO,  NO,  PAST,PSLS,HOME,PGUP,LEFT,RGHT,TRNS,
@@ -66,30 +66,30 @@ const uint8_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     ),
 
     /* SpaceFn & EnterFn */
-    [24] = KEYMAP_ANSI(
+    [4] = KEYMAP_ANSI(
     TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,
     TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,
-    TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,FN9,
+    TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,FN4,
     TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,
-    TRNS,TRNS,TRNS,               FN8,                TRNS,TRNS,TRNS,TRNS
+    TRNS,TRNS,TRNS,               FN3,                TRNS,TRNS,TRNS,TRNS
     ),
 
     /* Keymap settings layer */
-    [30] = KEYMAP_ANSI(
+    [5] = KEYMAP_ANSI(
     NO,  FN1, FN2, NO,  NO,  NO,  NO,  NO,  NO,  NO,  FN0, NO,  NO,  NO,
     NO,  FN0, NO,  NO,  NO,  NO,  NO,  NO,  NO,  NO,  NO,  NO,  NO,  NO,
-    NO,  NO,  NO,  FN1, NO,  NO,  NO,  NO,  NO,  NO,  NO,  NO,  FN17,
+    NO,  NO,  NO,  FN1, NO,  NO,  NO,  NO,  NO,  NO,  NO,  NO,  FN7,
     NO,  NO,  NO,  FN2, NO,  NO,  NO,  NO,  NO,  NO,  NO,  NO,
-    NO,  NO,  NO,                 FN17,               NO,  NO,  NO,  NO
+    NO,  NO,  NO,                 FN7,                NO,  NO,  NO,  NO
     ),
 
     /* Primary Fn Layer */
-    [31] = KEYMAP_ANSI(
+    [6] = KEYMAP_ANSI(
     TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,
     TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,
     TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,
     TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,
-    TRNS,TRNS,TRNS,               TRNS,               TRNS,TRNS,FN16,TRNS
+    TRNS,TRNS,TRNS,               TRNS,               TRNS,TRNS,FN6, TRNS
     ),
 };
 
@@ -103,11 +103,11 @@ const uint16_t PROGMEM fn_actions[] = {
     [1]  = ACTION_DEFAULT_LAYER_SET(1),             // Dvorak layout
     [2]  = ACTION_DEFAULT_LAYER_SET(2),             // Colemak layout
 
-    [8]  = ACTION_LAYER_TAP_KEY(8, KC_SPC),         // HHKB function layer
-    [9]  = ACTION_LAYER_TAP_KEY(8, KC_ENTER),       // HHKB function layer
+    [3]  = ACTION_LAYER_TAP_KEY(3, KC_SPC),         // HHKB function layer
+    [4]  = ACTION_LAYER_TAP_KEY(3, KC_ENTER),       // HHKB function layer
 
-    [16] = ACTION_LAYER_TAP_KEY(30, KC_APP),        // Keymap settings layer
-    [17] = ACTION_LAYER_TOGGLE(24),                 // Toggle SpaceFn & EnterFn
+    [6]  = ACTION_LAYER_TAP_KEY(5, KC_APP),         // Keymap settings layer
+    [7]  = ACTION_LAYER_TOGGLE(4),                  // Toggle SpaceFn & EnterFn
 
-    [20] = ACTION_MACRO(SIGNATURE),                 // Forum auto-signature
+    [8]  = ACTION_MACRO(SIGNATURE),                 // Forum auto-signature
 };
