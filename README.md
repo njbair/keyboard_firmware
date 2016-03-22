@@ -10,11 +10,12 @@ Quick Links
 Here are some quick links to my custom TMK layouts in this repo for various
 boards:
 
-* Alps64 ([ANSI](keyboard/alps64/keymaps/ansi.c), [AEKII](keyboard/alps64/keymaps/aekii.c), [HHKB](keyboard/alps64/keymaps/hhkb.c))
-* [Infinity (ChibiOS)](keyboard/infinity/keymaps/default.c)
-* [Filco Zero](keyboard/filco_zero/keymap_ansi.c)
+* Alps64 ([ANSI](keyboard/alps64/keymaps/ansi.c), [AEKII](keyboard/alps64/keymaps/aekii.c), [HHKB](keyboard/alps64/keymaps/hhkb.c), [Infinity](keyboard/alps64/keymaps/infinity.c))
+* [Infinity](keyboard/infinity/keymaps/default.c) (ChibiOS)
+* [Filco Zero](keyboard/filco_zero/keymaps/default.c)
+* [Unicomp PC-122](converter/pc122_usb/keymaps/ansi.c) (Hard-wired Teensy with TMK PS2-USB converter)
 * [Planck](keyboard/planck/keymaps/njbair.c)
-* [USB to USB Converter](converter/usb_usb/keymap_njbair.c)
+* [USB to USB Converter](converter/usb_usb/keymaps/ansi.c)
 
 ------------------------------------------------------------------------
 
