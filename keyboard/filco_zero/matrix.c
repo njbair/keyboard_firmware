@@ -38,15 +38,12 @@ static void init_rows(void);
 static void unselect_cols(void);
 static void select_col(uint8_t col);
 
-
-inline
-uint8_t matrix_rows(void)
+inline uint8_t matrix_rows(void)
 {
     return MATRIX_ROWS;
 }
 
-inline
-uint8_t matrix_cols(void)
+inline uint8_t matrix_cols(void)
 {
     return MATRIX_COLS;
 }

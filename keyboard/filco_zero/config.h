@@ -23,8 +23,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define PRODUCT_ID      0x6050
 #define DEVICE_VER      0x0104
 #define MANUFACTURER    Costar
-#define PRODUCT         Majestouch TKL
-#define DESCRIPTION     t.m.k. keyboard firmware for Majestouch TKL
+#define PRODUCT         Filco Zero TKL
+#define DESCRIPTION     TMK keyboard firmware for Filco Zero TKL
 
 /* matrix size */
 #define MATRIX_ROWS 8
@@ -37,5 +37,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define IS_COMMAND() ( \
     keyboard_report->mods == (MOD_BIT(KC_LSHIFT) | MOD_BIT(KC_RSHIFT)) \
 )
+
+/* Enable these layers by default. See matrix.c for details */
+#define CONFIG_H_ENABLE_LAYERS \
+    [4] = 1, \
+    [6] = 1
 
 #endif
