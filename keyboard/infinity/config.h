@@ -53,6 +53,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 /* Keymap for Infiity prototype */
 //#define INFINITY_PROTOTYPE
 
+/* Enable these layers by default. See matrix.c for details */
+#define CONFIG_H_ENABLE_LAYERS \
+    [4] = 1, \
+    [6] = 1
 
 /*
  * Feature disable options
