@@ -1,6 +1,8 @@
 #include "keymap_common.h"
-#include "macro.c"
-#include "function.c"
+#include "layer.h"
+#include "macro.h"
+#include "function.h"
+#include "init.h"
 
 const uint8_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     /**
@@ -17,7 +19,7 @@ const uint8_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      *       |GUI|Alt  |         Space         |Alt  |Fn0|
      *       `-------------------------------------------'
      */
-    [0] = KEYMAP_INFINITY(
+    [L_QWERTY] = KEYMAP_INFINITY(
     ESC, 1,   2,   3,   4,   5,   6,   7,   8,   9,   0,   MINS,EQL, BSLS,GRV,
     TAB, Q,   W,   E,   R,   T,   Y,   U,   I,   O,   P,   LBRC,RBRC,BSPC,
     CAPS,A,   S,   D,   F,   G,   H,   J,   K,   L,   SCLN,QUOT,ENT,
@@ -26,7 +28,7 @@ const uint8_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     ),
 
     /* Dvorak */
-    [1] = KEYMAP_INFINITY(
+    [L_DVORAK] = KEYMAP_INFINITY(
     TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,LBRC,RBRC,TRNS,TRNS,
     TRNS,QUOT,COMM,DOT, P,   Y,   F,   G,   C,   R,   L,   SLSH,EQL, TRNS,
     TRNS,TRNS,O,   E,   U,   I,   D,   H,   T,   N,   S,   MINS,TRNS,
@@ -35,7 +37,7 @@ const uint8_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     ),
 
     /* Colemak */
-    [2] = KEYMAP_INFINITY(
+    [L_COLEMAK] = KEYMAP_INFINITY(
     TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,
     TRNS,TRNS,TRNS,F,   P,   G,   J,   L,   U,   Y,   SCLN,TRNS,TRNS,TRNS,
     TRNS,TRNS,R,   S,   T,   D,   TRNS,N,   E,   I,   O,   TRNS,TRNS,
@@ -57,7 +59,7 @@ const uint8_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      *       |GUI|Alt  |        Space          |Alt  |Fn0|
      *       `-------------------------------------------'
      */
-    [3] = KEYMAP_INFINITY(
+    [L_OVERLAY_HHKB_FN] = KEYMAP_INFINITY(
     TRNS,F1,  F2,  F3,  F4,  F5,  F6,  F7,  F8,  F9,  F10, F11, F12, NO,  INS,
     CAPS,NO,  NO,  NO,  NO,  NO,  NO,  NO,  PSCR,SLCK,PAUS,UP,  NO,  DEL,
     TRNS,VOLD,VOLU,MUTE,NO,  NO,  PAST,PSLS,HOME,PGUP,LEFT,RGHT,TRNS,
@@ -66,49 +68,50 @@ const uint8_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     ),
 
     /* SpaceFn & EnterFn */
-    [4] = KEYMAP_INFINITY(
+    [L_FN_SPACEFN] = KEYMAP_INFINITY(
     TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,
     TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,
-    TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,FN4,
+    TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,FN5,
     TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,
-    TRNS,TRNS,TRNS,               FN3,           TRNS,TRNS,TRNS,TRNS
+    TRNS,TRNS,TRNS,               FN4,           TRNS,TRNS,TRNS,TRNS
     ),
 
     /* Keymap settings layer */
-    [5] = KEYMAP_INFINITY(
-    NO,  FN1, FN2, NO,  NO,  NO,  NO,  NO,  NO,  NO,  FN0, NO,  NO,  NO,  NO,
+    [L_OVERLAY_KEYMAP_SETTINGS] = KEYMAP_INFINITY(
+    NO,  FN1, FN2, FN3, NO,  NO,  NO,  NO,  NO,  NO,  FN0, NO,  NO,  NO,  NO,
     NO,  FN0, NO,  NO,  NO,  NO,  NO,  NO,  NO,  NO,  NO,  NO,  NO,  NO,
-    NO,  NO,  NO,  FN1, NO,  NO,  NO,  NO,  NO,  NO,  NO,  NO,  FN7,
+    NO,  NO,  NO,  FN1, NO,  FN3, NO,  NO,  NO,  NO,  NO,  NO,  FN7,
     NO,  NO,  NO,  FN2, NO,  NO,  NO,  NO,  NO,  NO,  NO,  NO,  NO,
     NO,  NO,  NO,                 FN7,           NO,  NO,  NO,  NO
     ),
 
     /* Primary Fn Layer */
-    [6] = KEYMAP_INFINITY(
+    [L_FN_PRIMARY] = KEYMAP_INFINITY(
     TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,
     TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,
     TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,
-    TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,FN5,
+    TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,FN9,
     TRNS,TRNS,TRNS,               TRNS,          TRNS,TRNS,FN6, TRNS
     ),
 };
 
 
 
-/*
+/**
  * Fn action definition
  */
 const uint16_t PROGMEM fn_actions[] = {
-    [0]  = ACTION_DEFAULT_LAYER_SET(0),             // QWERTY layout
-    [1]  = ACTION_DEFAULT_LAYER_SET(1),             // Dvorak layout
-    [2]  = ACTION_DEFAULT_LAYER_SET(2),             // Colemak layout
+    [0]  = ACTION_FUNCTION(F_SWITCH_LAYOUT_QWERTY),
+    [1]  = ACTION_FUNCTION(F_SWITCH_LAYOUT_DVORAK),
+    [2]  = ACTION_FUNCTION(F_SWITCH_LAYOUT_COLEMAK),
+    [3]  = ACTION_FUNCTION(F_SWITCH_LAYOUT_GAMER),
 
-    [3]  = ACTION_LAYER_TAP_KEY(3, KC_SPC),         // HHKB function layer
-    [4]  = ACTION_LAYER_TAP_KEY(3, KC_ENTER),       // HHKB function layer
-    [5]  = ACTION_LAYER_MOMENTARY(3),               // HHKB function layer
+    [4]  = ACTION_LAYER_TAP_KEY(L_OVERLAY_HHKB_FN, KC_SPC),
+    [5]  = ACTION_LAYER_TAP_KEY(L_OVERLAY_HHKB_FN, KC_ENTER),
+    [6]  = ACTION_LAYER_TAP_KEY(L_OVERLAY_KEYMAP_SETTINGS, KC_APP),
+    [7]  = ACTION_LAYER_TOGGLE(L_FN_SPACEFN),
 
-    [6]  = ACTION_LAYER_TAP_KEY(5, KC_APP),         // Keymap settings layer
-    [7]  = ACTION_LAYER_TOGGLE(4),                  // Toggle SpaceFn & EnterFn
+    [8]  = ACTION_MACRO(M_SIGNATURE),
 
-    [8]  = ACTION_MACRO(SIGNATURE),                 // Forum auto-signature
+    [9]  = ACTION_LAYER_MOMENTARY(L_OVERLAY_HHKB_FN),
 };
