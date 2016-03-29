@@ -1,6 +1,8 @@
 #include "keymap_common.h"
-#include "macro.c"
-#include "function.c"
+#include "layer.h"
+#include "macro.h"
+#include "function.h"
+#include "init.h"
 
 const uint8_t PROGMEM keymaps[][MATRIX_COLS][MATRIX_ROWS] = {
     /**
@@ -17,7 +19,7 @@ const uint8_t PROGMEM keymaps[][MATRIX_COLS][MATRIX_ROWS] = {
      * |Ctrl|GUI |Alt |         Space          |Alt |GUI |Fn0 |Ctrl|
      * `-----------------------------------------------------------'
      */
-    [0] = KEYMAP_ANSI(
+    [L_QWERTY] = KEYMAP_ANSI(
     ESC, F1,  F2,  F3,  F4,  F5,  F6,  F7,  F8,  F9,  F10, F11, F12,         PSCR,SLCK,PAUS,
     GRV, 1,   2,   3,   4,   5,   6,   7,   8,   9,   0,   MINS,EQL, BSPC,   INS, HOME,PGUP,    NLCK,PSLS,PAST,PMNS,
     TAB, Q,   W,   E,   R,   T,   Y,   U,   I,   O,   P,   LBRC,RBRC,BSLS,   DEL, END, PGDN,    P7,  P8,  P9,  PPLS,
@@ -27,7 +29,7 @@ const uint8_t PROGMEM keymaps[][MATRIX_COLS][MATRIX_ROWS] = {
     ),
 
     /* Dvorak */
-    [1] = KEYMAP_ANSI(
+    [L_DVORAK] = KEYMAP_ANSI(
     TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,        TRNS,TRNS,TRNS,
     TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,LBRC,RBRC,TRNS,   TRNS,TRNS,TRNS,    TRNS,TRNS,TRNS,TRNS,
     TRNS,QUOT,COMM,DOT, P,   Y,   F,   G,   C,   R,   L,   SLSH,EQL, TRNS,   TRNS,TRNS,TRNS,    TRNS,TRNS,TRNS,TRNS,
@@ -37,7 +39,7 @@ const uint8_t PROGMEM keymaps[][MATRIX_COLS][MATRIX_ROWS] = {
     ),
 
     /* Colemak */
-    [2] = KEYMAP_ANSI(
+    [L_COLEMAK] = KEYMAP_ANSI(
     TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,        TRNS,TRNS,TRNS,
     TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,   TRNS,TRNS,TRNS,    TRNS,TRNS,TRNS,TRNS,
     TRNS,TRNS,TRNS,F,   P,   G,   J,   L,   U,   Y,   SCLN,TRNS,TRNS,TRNS,   TRNS,TRNS,TRNS,    TRNS,TRNS,TRNS,TRNS,
@@ -60,7 +62,7 @@ const uint8_t PROGMEM keymaps[][MATRIX_COLS][MATRIX_ROWS] = {
      * |Ctrl|GUI |Alt |       Space            |Alt |GUI |Fn0 |Ctrl|
      * `-----------------------------------------------------------'
      */ 
-    [3] = KEYMAP_ANSI(
+    [L_OVERLAY_HHKB_FN] = KEYMAP_ANSI(
     ESC, F1,  F2,  F3,  F4,  F5,  F6,  F7,  F8,  F9,  F10, F11, F12,         PSCR,SLCK,PAUS,
     GRV, F1,  F2,  F3,  F4,  F5,  F6,  F7,  F8,  F9,  F10, F11, F12, DEL,    INS, HOME,PGUP,    NLCK,PSLS,PAST,PMNS,
     CAPS,NO,  NO,  NO,  NO,  NO,  NO,  NO,  PSCR,SLCK,PAUS,UP,  NO,  INS,    DEL, END, PGDN,    P7,  P8,  P9,  PPLS,
@@ -70,27 +72,27 @@ const uint8_t PROGMEM keymaps[][MATRIX_COLS][MATRIX_ROWS] = {
     ),
 
     /* SpaceFn & EnterFn */
-    [4] = KEYMAP_ANSI(
+    [L_FN_SPACEFN] = KEYMAP_ANSI(
     TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,        TRNS,TRNS,TRNS,
     TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,   TRNS,TRNS,TRNS,    TRNS,TRNS,TRNS,TRNS,
     TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,   TRNS,TRNS,TRNS,    TRNS,TRNS,TRNS,TRNS,
-    TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,FN4,                            TRNS,TRNS,TRNS,
+    TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,FN5,                            TRNS,TRNS,TRNS,
     TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,                  TRNS,         TRNS,TRNS,TRNS,TRNS,
-    TRNS,TRNS,TRNS,               FN3,                TRNS,TRNS,TRNS,TRNS,   TRNS,TRNS,TRNS,    TRNS,TRNS
+    TRNS,TRNS,TRNS,               FN4,                TRNS,TRNS,TRNS,TRNS,   TRNS,TRNS,TRNS,    TRNS,TRNS
     ),
 
     /* Keymap settings layer */
-    [5] = KEYMAP_ANSI(
+    [L_OVERLAY_KEYMAP_SETTINGS] = KEYMAP_ANSI(
     NO,  NO,  NO,  NO,  NO,  NO,  NO,  NO,  NO,  NO,  NO,  NO,  NO,          NO,  NO,  NO,
-    NO,  FN1, FN2, NO,  NO,  NO,  NO,  NO,  NO,  NO,  FN0, NO,  NO,  NO,     NO,  NO,  NO,      NO,  NO,  NO,  NO,
+    NO,  FN1, FN2, FN3, NO,  NO,  NO,  NO,  NO,  NO,  FN0, NO,  NO,  NO,     NO,  NO,  NO,      NO,  NO,  NO,  NO,
     NO,  FN0, NO,  NO,  NO,  NO,  NO,  NO,  NO,  NO,  NO,  NO,  NO,  NO,     NO,  NO,  NO,      NO,  NO,  NO,  NO,
-    NO,  NO,  NO,  FN1, NO,  NO,  NO,  NO,  NO,  NO,  NO,  NO,  FN7,                            NO,  NO,  NO,
+    NO,  NO,  NO,  FN1, NO,  FN3, NO,  NO,  NO,  NO,  NO,  NO,  FN7,                            NO,  NO,  NO,
     NO,  NO,  NO,  FN2, NO,  NO,  NO,  NO,  NO,  NO,  NO,  NO,                    NO,           NO,  NO,  NO,  NO,
     NO,  NO,  NO,                 FN7,                NO,  NO,  NO,  NO,     NO,  NO,  NO,      NO,  NO
     ),
 
     /* Primary Fn Layer */
-    [6] = KEYMAP_ANSI(
+    [L_FN_PRIMARY] = KEYMAP_ANSI(
     TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,        TRNS,TRNS,TRNS,
     TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,   TRNS,TRNS,TRNS,    TRNS,TRNS,TRNS,TRNS,
     TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,   TRNS,TRNS,TRNS,    TRNS,TRNS,TRNS,TRNS,
@@ -102,19 +104,19 @@ const uint8_t PROGMEM keymaps[][MATRIX_COLS][MATRIX_ROWS] = {
 
 
 
-/*
+/**
  * Fn action definition
  */
 const uint16_t PROGMEM fn_actions[] = {
-    [0]  = ACTION_DEFAULT_LAYER_SET(0),             // QWERTY layout
-    [1]  = ACTION_DEFAULT_LAYER_SET(1),             // Dvorak layout
-    [2]  = ACTION_DEFAULT_LAYER_SET(2),             // Colemak layout
+    [0]   = ACTION_FUNCTION(F_SWITCH_LAYOUT_QWERTY),
+    [1]   = ACTION_FUNCTION(F_SWITCH_LAYOUT_DVORAK),
+    [2]   = ACTION_FUNCTION(F_SWITCH_LAYOUT_COLEMAK),
+    [3]   = ACTION_FUNCTION(F_SWITCH_LAYOUT_GAMER),
 
-    [3]  = ACTION_LAYER_TAP_KEY(3, KC_SPC),         // HHKB function layer
-    [4]  = ACTION_LAYER_TAP_KEY(3, KC_ENTER),       // HHKB function layer
+    [4]   = ACTION_LAYER_TAP_KEY(L_OVERLAY_HHKB_FN, KC_SPC),
+    [5]   = ACTION_LAYER_TAP_KEY(L_OVERLAY_HHKB_FN, KC_ENTER),
+    [6]   = ACTION_LAYER_TAP_KEY(L_OVERLAY_KEYMAP_SETTINGS, KC_APP),
+    [7]   = ACTION_LAYER_TOGGLE(L_FN_SPACEFN),
 
-    [6]  = ACTION_LAYER_TAP_KEY(5, KC_APP),         // Keymap settings layer
-    [7]  = ACTION_LAYER_TOGGLE(4),                  // Toggle SpaceFn & EnterFn
-
-    [8]  = ACTION_MACRO(SIGNATURE),                 // Forum auto-signature
+    [8]   = ACTION_MACRO(M_SIGNATURE),
 };
