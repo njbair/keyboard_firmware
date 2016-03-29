@@ -27,21 +27,21 @@ OPT_DEFS += -DINTERRUPT_CONTROL_ENDPOINT
 
 # Build Options
 BOOTMAGIC_ENABLE = yes      # Virtual DIP switch configuration(+1000)
-#MOUSEKEY_ENABLE = yes       # Mouse keys(+4700)
 EXTRAKEY_ENABLE = yes       # Audio control and System control(+450)
 CONSOLE_ENABLE = yes        # Console for debug(+400)
 COMMAND_ENABLE = yes        # Commands for debug and configuration
 KEYBOARD_LOCK_ENABLE = yes  # Child lock
+NKRO_ENABLE = yes           # USB Nkey Rollover - not yet supported in LUFA
+#MOUSEKEY_ENABLE = yes       # Mouse keys(+4700)
 #SLEEP_LED_ENABLE = yes      # Breathing sleep LED during USB suspend
-#NKRO_ENABLE = yes           # USB Nkey Rollover - not yet supported in LUFA
 
 # Optimize size but this may cause error "relocation truncated to fit"
 EXTRALDFLAGS = -Wl,--relax
 
-# Search Path
-VPATH += $(TARGET_DIR)
-VPATH += $(TMK_DIR)
-
 include $(TMK_DIR)/protocol/lufa.mk
 include $(TMK_DIR)/common.mk
 include $(TMK_DIR)/rules.mk
+
+# Search Path
+VPATH += $(TARGET_DIR)
+VPATH += $(TMK_DIR)
