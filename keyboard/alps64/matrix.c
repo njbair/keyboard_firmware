@@ -26,6 +26,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include "debug.h"
 #include "util.h"
 #include "matrix.h"
+#include "init.h"
 
 #ifndef DEBOUNCE
 #   define DEBOUNCE	5
@@ -60,8 +61,6 @@ uint8_t matrix_cols(void)
 
 void matrix_init(void)
 {
-    void user_init_actions();
-
     // initialize row and col
     unselect_rows();
     init_cols();
