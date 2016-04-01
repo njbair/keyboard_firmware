@@ -1,3 +1,5 @@
+#include "action_layer.h"
+
 /**
  * Init actions
  *
@@ -6,8 +8,7 @@
  */
 void user_init_actions(void)
 {
-    void layer_on(uint8_t layer);
-
     layer_on(L_FN_SPACEFN);
+    layer_on(L_OVERLAY_CTRL_REMAP);
     layer_on(L_FN_PRIMARY);
 }

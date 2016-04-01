@@ -27,7 +27,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include "util.h"
 #include "matrix.h"
 
-
 #ifndef DEBOUNCE
 #   define DEBOUNCE	5
 #endif
@@ -41,9 +40,6 @@ static matrix_row_t read_cols(void);
 static void init_cols(void);
 static void unselect_rows(void);
 static void select_row(uint8_t row);
-#ifdef CONFIG_H_ENABLE_LAYERS
-void layer_on(uint8_t layer);
-#endif
 
 
 inline
@@ -64,6 +60,8 @@ uint8_t matrix_cols(void)
 
 void matrix_init(void)
 {
+    void user_init_actions();
+
     // initialize row and col
     unselect_rows();
     init_cols();
@@ -80,24 +78,7 @@ void matrix_init(void)
     _delay_ms(500);
     LED_OFF();
 
-#ifdef CONFIG_H_ENABLE_LAYERS
-    /**
-     * Enable layers by default
-     *
-     * The default layer is defined in EEPROM and configurable via boot magic
-     * commands. But sometimes you want to enable other layers by default as
-     * well. You can do that by defining the CONFIG_H_ENABLE_LAYERS macro in your
-     * config.h file.
-     */
-    int enable_layers[32] = { CONFIG_H_ENABLE_LAYERS };
-    int i;
-
-    for (i=0; i<32; i++) {
-        if (enable_layers[i] == 1) {
-            layer_on(i);
-        }
-    }
-#endif
+    user_init_actions();
 }
 
 uint8_t matrix_scan(void)
