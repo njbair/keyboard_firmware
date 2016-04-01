@@ -7,9 +7,10 @@ TARGET = epiphanies_tmk_pegasushoof_20150108_lufa
 TARGET_DIR = .
 TMK_DIR = ../../module/tmk/tmk_core
 
-SRC =	keymap_common.c \
+SRC = keymap_common.c \
 	matrix.c \
 	led.c \
+	init.c \
 	keymaps/$(KEYMAP).c
 
 CONFIG_H = config.h
@@ -31,8 +32,8 @@ EXTRAKEY_ENABLE = yes       # Audio control and System control(+450)
 CONSOLE_ENABLE = yes        # Console for debug(+400)
 COMMAND_ENABLE = yes        # Commands for debug and configuration
 KEYBOARD_LOCK_ENABLE = yes  # Child lock
-#NKRO_ENABLE = yes           # USB Nkey Rollover - not yet supported in LUFA
-MOUSEKEY_ENABLE = yes       # Mouse keys(+4700)
+NKRO_ENABLE = yes           # USB Nkey Rollover
+#MOUSEKEY_ENABLE = yes       # Mouse keys(+4700)
 #SLEEP_LED_ENABLE = yes      # Breathing sleep LED during USB suspend
 
 # Optimize size but this may cause error "relocation truncated to fit"

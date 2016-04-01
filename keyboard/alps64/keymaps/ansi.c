@@ -85,13 +85,13 @@ const uint8_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     TRNS,TRNS,TRNS,               FN4,           TRNS,TRNS,TRNS,TRNS
     ),
 
-    /* Gaming Overrides */
+    /* Gaming overrides */
     [L_OVERLAY_GAMER] = KEYMAP_ANSI(
     TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,
     TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,
     CAPS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,
     TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,
-    LCTL,TRNS,NO,                 TRNS,          NO,  TRNS,TRNS,TRNS
+    LCTL,NO,  TRNS,               TRNS,          TRNS,NO,  NO,  RCTL
     ),
 
     /* Keymap settings layer */
