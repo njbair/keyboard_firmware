@@ -24,7 +24,7 @@ const uint8_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     TAB, Q,   W,   E,   R,   T,   Y,   U,   I,   O,   P,   LBRC,RBRC,BSLS,
     CAPS,A,   S,   D,   F,   G,   H,   J,   K,   L,   SCLN,QUOT,ENT,
     LSFT,Z,   X,   C,   V,   B,   N,   M,   COMM,DOT, SLSH,RSFT,
-    LCTL,LALT,LGUI,               SPC,                     RGUI,RALT,RCTL
+    LCTL,LALT,LGUI,               SPC,           RGUI,RALT,RCTL
     ),
 
     /* Dvorak */
@@ -33,7 +33,7 @@ const uint8_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     TRNS,QUOT,COMM,DOT, P,   Y,   F,   G,   C,   R,   L,   SLSH,EQL, TRNS,
     TRNS,TRNS,O,   E,   U,   I,   D,   H,   T,   N,   S,   MINS,TRNS,
     TRNS,SCLN,Q,   J,   K,   X,   B,   TRNS,W,   V,   Z,   TRNS,
-    TRNS,TRNS,TRNS,               TRNS,                    TRNS,TRNS,TRNS
+    TRNS,TRNS,TRNS,               TRNS,          TRNS,TRNS,TRNS
     ),
 
     /* Colemak */
@@ -42,7 +42,7 @@ const uint8_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     TRNS,TRNS,TRNS,F,   P,   G,   J,   L,   U,   Y,   SCLN,TRNS,TRNS,TRNS,
     TRNS,TRNS,R,   S,   T,   D,   TRNS,N,   E,   I,   O,   TRNS,TRNS,
     TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,K,   TRNS,TRNS,TRNS,TRNS,TRNS,
-    TRNS,TRNS,TRNS,               TRNS,                    TRNS,TRNS,TRNS
+    TRNS,TRNS,TRNS,               TRNS,          TRNS,TRNS,TRNS
     ),
 
     /* Remap Ctrl keys */
@@ -51,7 +51,7 @@ const uint8_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,
     LCTL,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,
     TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,
-    FN9, TRNS,TRNS,               TRNS,                    TRNS,TRNS,CAPS
+    FN9, TRNS,TRNS,               TRNS,          TRNS,TRNS,CAPS
     ),
 
     /**
@@ -70,10 +70,10 @@ const uint8_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      */
     [L_OVERLAY_HHKB_FN] = KEYMAP_AEK(
     GRV, F1,  F2,  F3,  F4,  F5,  F6,  F7,  F8,  F9,  F10, F11, F12, DEL,
-    NO,  NO,  NO,  NO,  NO,  NO,  NO,  NO,  PSCR,SLCK,PAUS,UP,  NO,  INS,
+    CAPS,NO,  NO,  NO,  NO,  NO,  NO,  NO,  PSCR,SLCK,PAUS,UP,  NO,  INS,
     TRNS,VOLD,VOLU,MUTE,NO,  NO,  PAST,PSLS,HOME,PGUP,LEFT,RGHT,TRNS,
     TRNS,FN10,NO,  NO,  NO,  NO,  PPLS,PMNS,END, PGDN,DOWN,TRNS,
-    TRNS,TRNS,TRNS,               TRNS,                    TRNS,TRNS,RCTL
+    TRNS,TRNS,TRNS,               TRNS,          TRNS,TRNS,RCTL
     ),
 
     /* SpaceFn & EnterFn */
@@ -82,7 +82,7 @@ const uint8_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,
     TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,FN5,
     TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,
-    TRNS,TRNS,TRNS,               FN4,                     TRNS,TRNS,TRNS
+    TRNS,TRNS,TRNS,               FN4,           TRNS,TRNS,TRNS
     ),
 
     /* Gaming Overrides */
@@ -91,7 +91,7 @@ const uint8_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,
     CAPS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,
     TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,
-    LCTL,TRNS,NO,                 TRNS,                    NO,  TRNS,TRNS
+    LCTL,TRNS,NO,                 TRNS,          NO,  TRNS,TRNS
     ),
 
     /* Keymap settings layer */
@@ -100,7 +100,7 @@ const uint8_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     NO,  FN0, NO,  NO,  NO,  NO,  NO,  NO,  NO,  NO,  NO,  NO,  NO,  NO,
     NO,  NO,  NO,  FN1, NO,  FN3, NO,  NO,  NO,  NO,  NO,  NO,  FN7,
     NO,  NO,  NO,  FN2, NO,  NO,  NO,  NO,  NO,  NO,  NO,  NO,
-    FN8, NO,  NO,                 FN7,                     NO,  NO,  FN8
+    FN8, NO,  NO,                 FN7,           NO,  NO,  FN8
     ),
 
     /* Primary Fn layer */
@@ -109,7 +109,7 @@ const uint8_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,
     TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,
     TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,
-    TRNS,TRNS,TRNS,               TRNS,                    FN6, TRNS,TRNS
+    TRNS,TRNS,TRNS,               TRNS,          FN6, TRNS,TRNS
     ),
 };
 
@@ -132,5 +132,5 @@ const uint16_t PROGMEM fn_actions[] = {
 
     [9]   = ACTION_FUNCTION(F_CTRL_QWERTY_FALLBACK),
 
-    [10]   = ACTION_MACRO(M_SIGNATURE),
+    [10]  = ACTION_MACRO(M_SIGNATURE),
 };
