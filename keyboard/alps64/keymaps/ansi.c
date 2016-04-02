@@ -51,7 +51,7 @@ const uint8_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,
     LCTL,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,
     TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,
-    FN9, TRNS,TRNS,               TRNS,          TRNS,TRNS,TRNS,CAPS
+    FN9, TRNS,TRNS,               TRNS,          TRNS,TRNS,TRNS,FN10
     ),
 
     /**
@@ -61,19 +61,19 @@ const uint8_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      * |-----------------------------------------------------------|
      * |Caps |   |   |   |   |   |   |   |Psc|Slk|Pus|Up |   | Ins |
      * |-----------------------------------------------------------|
-     * |Ctrl  |VoD|VoU|Mut|   |   |  *|  /|Hom|PgU|Lef|Rig| Enter  |
+     * |      |VoD|VoU|Mut|   |   |  *|  /|Hom|PgU|Lef|Rig|        |
      * |-----------------------------------------------------------|
-     * |Shift   |   |   |   |   |   |  +|  -|End|PgD|Dow| Shift    |
+     * |        |   |   |   |   |   |  +|  -|End|PgD|Dow|          |
      * |-----------------------------------------------------------|
-     * |Ctrl|GUI |Alt |       Space            |Alt |GUI |Fn  |Ctrl|
+     * |    |    |    |                        |    |    |    |    |
      * `-----------------------------------------------------------'
      */
     [L_OVERLAY_HHKB_FN] = KEYMAP_ANSI(
     GRV, F1,  F2,  F3,  F4,  F5,  F6,  F7,  F8,  F9,  F10, F11, F12, DEL,
     CAPS,NO,  NO,  NO,  NO,  NO,  NO,  NO,  PSCR,SLCK,PAUS,UP,  NO,  INS,
     TRNS,VOLD,VOLU,MUTE,NO,  NO,  PAST,PSLS,HOME,PGUP,LEFT,RGHT,TRNS,
-    TRNS,FN10,NO,  NO,  NO,  NO,  PPLS,PMNS,END, PGDN,DOWN,TRNS,
-    TRNS,TRNS,TRNS,               TRNS,          TRNS,TRNS,TRNS,RCTL
+    TRNS,FN11,NO,  NO,  NO,  NO,  PPLS,PMNS,END, PGDN,DOWN,TRNS,
+    TRNS,TRNS,TRNS,               TRNS,          TRNS,TRNS,TRNS,TRNS
     ),
 
     /* SpaceFn & EnterFn */
@@ -131,6 +131,7 @@ const uint16_t PROGMEM fn_actions[] = {
     [8]   = ACTION_LAYER_TOGGLE(L_OVERLAY_CTRL_REMAP),
 
     [9]   = ACTION_FUNCTION(F_CTRL_QWERTY_FALLBACK),
+    [10]  = ACTION_MODS_TAP_KEY(MOD_RCTL, KC_CAPS),
 
-    [10]  = ACTION_MACRO(M_SIGNATURE),
+    [11]  = ACTION_MACRO(M_SIGNATURE),
 };

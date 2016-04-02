@@ -24,7 +24,7 @@ const uint8_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     TAB, Q,   W,   E,   R,   T,   Y,   U,   I,   O,   P,   LBRC,RBRC,BSPC,
     LCTL,A,   S,   D,   F,   G,   H,   J,   K,   L,   SCLN,QUOT,ENT,
     LSFT,Z,   X,   C,   V,   B,   N,   M,   COMM,DOT, SLSH,RSFT,NO,
-         LGUI,LALT,               SPC,           RALT,NO
+         LGUI,LALT,               SPC,           RALT,RGUI
     ),
 
     /* Dvorak */
@@ -69,10 +69,10 @@ const uint8_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      *       `-------------------------------------------'
      */
     [L_OVERLAY_HHKB_FN] = KEYMAP_HHKB(
-    TRNS,F1,  F2,  F3,  F4,  F5,  F6,  F7,  F8,  F9,  F10, F11, F12, NO,  INS,
+    GRV, F1,  F2,  F3,  F4,  F5,  F6,  F7,  F8,  F9,  F10, F11, F12, NO,  INS,
     CAPS,NO,  NO,  NO,  NO,  NO,  NO,  NO,  PSCR,SLCK,PAUS,UP,  NO,  DEL,
     TRNS,VOLD,VOLU,MUTE,NO,  NO,  PAST,PSLS,HOME,PGUP,LEFT,RGHT,TRNS,
-    TRNS,FN8, NO,  NO,  NO,  NO,  PPLS,PMNS,END, PGDN,DOWN,TRNS,TRNS,
+    TRNS,FN11,NO,  NO,  NO,  NO,  PPLS,PMNS,END, PGDN,DOWN,TRNS,TRNS,
          TRNS,TRNS,               TRNS,          TRNS,TRNS
     ),
 
@@ -85,13 +85,13 @@ const uint8_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
          TRNS,TRNS,               FN4,           TRNS,TRNS
     ),
 
-    /* Gaming Overrides */
+    /* Gaming overrides */
     [L_OVERLAY_GAMER] = KEYMAP_HHKB(
     TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,
     TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,
     CAPS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,
     TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,
-         LCTL,TRNS,               TRNS,          TRNS,NO
+         LCTL,TRNS,               TRNS,          TRNS,RCTL
     ),
 
     /* Keymap settings layer */
@@ -108,7 +108,7 @@ const uint8_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,
     TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,
     TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,
-    TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,FN11,
+    TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,FN12,
          TRNS,TRNS,               TRNS,          TRNS,FN6
     ),
 };
@@ -131,8 +131,9 @@ const uint16_t PROGMEM fn_actions[] = {
     [8]   = ACTION_LAYER_TOGGLE(L_OVERLAY_CTRL_REMAP),
 
     [9]   = ACTION_FUNCTION(F_CTRL_QWERTY_FALLBACK),
+    [10]  = ACTION_MODS_TAP_KEY(MOD_RCTL, KC_CAPS),
 
-    [10]  = ACTION_MACRO(M_SIGNATURE),
+    [11]  = ACTION_MACRO(M_SIGNATURE),
 
-    [11]  = ACTION_LAYER_MOMENTARY(L_OVERLAY_HHKB_FN),
+    [12]  = ACTION_LAYER_MOMENTARY(L_OVERLAY_HHKB_FN),
 };
