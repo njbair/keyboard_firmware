@@ -1,12 +1,12 @@
 # njbair's Monarch Keymap
 
-A highly-customized TMK firmware configuration for the Monarch keyboard.
+A highly-customized TMK firmware for the Monarch keyboard.
 
 ![The Monarch Keyboard](http://i.imgur.com/kmf7Lyh.jpg)
 
 ## Introduction
 
-The Monarch keyboard is a custom 60% + LHTK keyboard designed by GeekHack member **koalapear**, with electronics designed and developed by **skullydazed**. This is my custom TMK firmware
+The Monarch keyboard is a custom 60% + LHTK keyboard designed by GeekHack member **koalapear**, with electronics designed and developed by **skullydazed**.
 
 ## Firmware Features
 
