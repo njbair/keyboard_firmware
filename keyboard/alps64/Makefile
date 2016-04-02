@@ -10,7 +10,9 @@ TMK_DIR = ../../module/tmk/tmk_core
 SRC = keymap_common.c \
 	matrix.c \
 	led.c \
-	init.c \
+	function.c \
+	macro.c \
+	hooks.c \
 	keymaps/$(KEYMAP).c
 
 CONFIG_H = config.h

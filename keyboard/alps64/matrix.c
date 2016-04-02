@@ -26,7 +26,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include "debug.h"
 #include "util.h"
 #include "matrix.h"
-#include "init.h"
 
 #ifndef DEBOUNCE
 #   define DEBOUNCE	5
@@ -76,8 +75,6 @@ void matrix_init(void)
     LED_ON();
     _delay_ms(500);
     LED_OFF();
-
-    user_init_actions();
 }
 
 uint8_t matrix_scan(void)
