@@ -51,7 +51,7 @@ const uint8_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     TRNS,TRNS,TRNS,TRNS,     TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,
     TRNS,TRNS,TRNS,TRNS,     LCTL,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,
     TRNS,TRNS,TRNS,TRNS,     TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,
-    TRNS,     TRNS,          FN9, TRNS,TRNS,               TRNS,          TRNS,TRNS,CAPS
+    TRNS,     TRNS,          FN9, TRNS,TRNS,               TRNS,          TRNS,TRNS,FN10
     ),
 
     /**
@@ -72,7 +72,7 @@ const uint8_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     TRNS,TRNS,TRNS,TRNS,     GRV, F1,  F2,  F3,  F4,  F5,  F6,  F7,  F8,  F9,  F10, F11, F12, DEL,
     TRNS,TRNS,TRNS,TRNS,     CAPS,NO,  NO,  NO,  NO,  NO,  NO,  NO,  PSCR,SLCK,PAUS,UP,  NO,  INS,
     TRNS,TRNS,TRNS,TRNS,     TRNS,VOLD,VOLU,MUTE,NO,  NO,  PAST,PSLS,HOME,PGUP,LEFT,RGHT,TRNS,
-    TRNS,TRNS,TRNS,TRNS,     TRNS,FN10,NO,  NO,  NO,  NO,  PPLS,PMNS,END, PGDN,DOWN,TRNS,
+    TRNS,TRNS,TRNS,TRNS,     TRNS,FN11,NO,  NO,  NO,  NO,  PPLS,PMNS,END, PGDN,DOWN,TRNS,
     TRNS,     TRNS,          TRNS,TRNS,TRNS,               TRNS,          TRNS,TRNS,RCTL
     ),
 
@@ -96,10 +96,10 @@ const uint8_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
     /* Keymap settings layer */
     [L_OVERLAY_KEYMAP_SETTINGS] = KEYMAP_US(
-    NO,  NO,  NO,  NO,       NO,  FN1, FN2, FN3, NO,  NO,  NO,  NO,  NO,  NO,  FN0, FN11,FN12,NO,
+    NO,  NO,  NO,  NO,       NO,  FN1, FN2, FN3, NO,  NO,  NO,  NO,  NO,  NO,  FN0, FN12,FN13,NO,
     NO,  NO,  NO,  NO,       NO,  FN0, NO,  NO,  NO,  NO,  NO,  NO,  NO,  NO,  NO,  NO,  NO,  NO,
     NO,  NO,  NO,  NO,       NO,  NO,  NO,  FN1, NO,  FN3, NO,  NO,  NO,  NO,  NO,  NO,  FN7,
-    FN13,NO,  NO,  NO,       NO,  NO,  NO,  FN2, NO,  NO,  NO,  NO,  NO,  NO,  NO,  NO,
+    FN14,NO,  NO,  NO,       NO,  NO,  NO,  FN2, NO,  NO,  NO,  NO,  NO,  NO,  NO,  NO,
     NO,       NO,            FN8, NO,  NO,                 FN7,           NO,  NO,  FN8
     ),
 
@@ -118,7 +118,7 @@ const uint8_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     Q,   W,   E,   R,        TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,
     A,   S,   D,   F,        TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,
     Z,   X,   C,   SPC,      TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,
-    NO,       FN14,          TRNS,TRNS,TRNS,               TRNS,          TRNS,TRNS,TRNS
+    NO,       FN15,          TRNS,TRNS,TRNS,               TRNS,          TRNS,TRNS,TRNS
     ),
 
     /* Keypad gaming layer */
@@ -149,12 +149,13 @@ const uint16_t PROGMEM fn_actions[] = {
     [8]   = ACTION_LAYER_TOGGLE(L_OVERLAY_CTRL_REMAP),
 
     [9]   = ACTION_FUNCTION(F_CTRL_QWERTY_FALLBACK),
+    [10]  = ACTION_MODS_TAP_KEY(MOD_RCTL, KC_CAPS),
 
-    [10]  = ACTION_MACRO(M_SIGNATURE),
+    [11]  = ACTION_MACRO(M_SIGNATURE),
 
-    [11]  = ACTION_BACKLIGHT_INCREASE(),
-    [12]  = ACTION_BACKLIGHT_DECREASE(),
+    [12]  = ACTION_BACKLIGHT_INCREASE(),
+    [13]  = ACTION_BACKLIGHT_DECREASE(),
 
-    [13]  = ACTION_LAYER_TOGGLE(L_KP_GAMER),
-    [14]  = ACTION_LAYER_MOMENTARY(L_KP_GAMER_L2),
+    [14]  = ACTION_LAYER_TOGGLE(L_KP_GAMER),
+    [15]  = ACTION_LAYER_MOMENTARY(L_KP_GAMER_L2),
 };
