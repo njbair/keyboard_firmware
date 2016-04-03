@@ -2,7 +2,7 @@
 #include "layer.h"
 #include "print.h"
 
-void hook_init_late(void)
+void hook_keyboard_init(void)
 {
     layer_on(L_FN_SPACEFN);
     layer_on(L_OVERLAY_CTRL_REMAP);
