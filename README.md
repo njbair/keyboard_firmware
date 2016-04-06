@@ -11,6 +11,7 @@ Here are some quick links to my custom TMK layouts in this repo for various
 boards:
 
 * [Alps64](keyboard/alps64)
+* [Monarch](keyboard/monarch)
 * [Infinity](keyboard/infinity) (ChibiOS)
 * [Filco Zero](keyboard/filco_zero)
 * [Unicomp PC-122](converter/pc122_usb) (Hard-wired Teensy with TMK PS2-USB converter)
