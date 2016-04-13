@@ -1,13 +1,11 @@
-enum keymap_layer {
-    L_QWERTY,
-    L_DVORAK,
-    L_COLEMAK,
-    L_OVERLAY_CTRL_REMAP,
-    L_OVERLAY_HHKB_FN,
-    L_FN_SPACEFN,
-    L_OVERLAY_GAMER,
-    L_OVERLAY_KEYMAP_SETTINGS,
-    L_FN_PRIMARY,
-    L_KP_GAMER,
-    L_KP_GAMER_L2,
-};
+#define L_QWERTY                    0
+#define L_DVORAK                    1
+#define L_COLEMAK                   2
+#define L_OVERLAY_CTRL_REMAP        3
+#define L_OVERLAY_HHKB_FN           4
+#define L_FN_SPACEFN                5
+#define L_OVERLAY_GAMER             6
+#define L_OVERLAY_KEYMAP_SETTINGS   7
+#define L_FN_PRIMARY                8
+#define L_KP_GAMER                  9
+#define L_KP_GAMER_L2               10

@@ -26,7 +26,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include "debug.h"
 #include "util.h"
 #include "matrix.h"
-#include "init.h"
 
 #ifndef DEBOUNCE
 #   define DEBOUNCE	5
@@ -75,8 +74,6 @@ void matrix_init(void)
     #ifdef BACKLIGHT_ENABLE
     init_backlight_pin();
     #endif
-
-    user_init_actions();
 }
 
 uint8_t matrix_scan(void)
