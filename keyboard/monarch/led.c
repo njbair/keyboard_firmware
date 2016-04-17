@@ -53,10 +53,11 @@ void led_set(uint8_t usb_led)
     void init_backlight_pin(void)
     {
         DDRC |= (1<<6);
-        TC4H = 0x03;
-        OCR3C = 0xFF;
-        TCCR3A = 0b10000010;
-        TCCR3B = 0b00000001;
+        ICR1 = 0xFFFF;
+        TCCR1A = 0b00100010; // COM1B1 and WGM11, datasheet page 131
+        TCCR1B = 0b00011001; // WGM13, WGM12, and CS10, datasheet page 133
+
+        OCR1B = 0x0000;
     }
 
     void backlight_set(uint8_t level)
@@ -64,22 +65,23 @@ void led_set(uint8_t usb_led)
         switch (level)
         {
             case 0:
-                pwm_level = 0x00;
+                // Turn off underlighting
+                PORTB &= ~(_BV(PORTB7));
+                OCR1B = 0x0000;
                 break;
             case 1:
-                pwm_level = 0x0F;
+                // Turn underlighting back on at low level
+                PORTB |= (_BV(PORTB7));
+                OCR1B = 0x00FF;
                 break;
             case 2:
-                pwm_level = 0x80;
+                OCR1B = 0x0FFF;
                 break;
             case 3:
-                pwm_level = 0xFF;
+                OCR1B = 0xFFFF;
                 break;
             default:
                 xprintf("Unknown level: %d\n", level);
         }
-
-        TC4H = pwm_level >> 8;
-        OCR3A = 0xFF & pwm_level;
     }
 #endif
