@@ -2,7 +2,6 @@
 #include "layer.h"
 #include "macro.h"
 #include "function.h"
-#include "init.h"
 
 const uint8_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     /**
