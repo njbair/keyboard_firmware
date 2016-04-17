@@ -59,10 +59,12 @@ void action_function(keyrecord_t *record, uint8_t id, uint8_t opt __attribute__ 
                 qwerty_fallback_previous_state = default_layer_state;
                 default_layer_set(1UL<<L_QWERTY);
                 add_weak_mods(MOD_LCTL);
+                send_keyboard_report();
             } else {
                 default_layer_set(qwerty_fallback_previous_state);
                 del_weak_mods(MOD_LCTL);
                 clear_keyboard();
+                send_keyboard_report();
             }
             break;
     }
