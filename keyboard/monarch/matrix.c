@@ -41,7 +41,6 @@ static void init_cols(void);
 static void unselect_rows(void);
 static void select_row(uint8_t row);
 
-
 inline
 uint8_t matrix_rows(void)
 {
@@ -69,11 +68,6 @@ void matrix_init(void)
         matrix[i] = 0;
         matrix_debouncing[i] = 0;
     }
-
-    // Enable underlighting
-    #ifdef BACKLIGHT_ENABLE
-    init_backlight_pin();
-    #endif
 }
 
 uint8_t matrix_scan(void)
