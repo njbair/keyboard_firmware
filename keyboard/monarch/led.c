@@ -68,10 +68,10 @@ void led_set(uint8_t usb_led)
             case 1:
                 // Turn underlighting back on at low level
                 PORTB |= (_BV(PORTB7));
-                OCR1B = 0x00FF;
+                OCR1B = 0x0FFF;
                 break;
             case 2:
-                OCR1B = 0x0FFF;
+                OCR1B = 0x87FF;
                 break;
             case 3:
                 OCR1B = 0xFFFF;
