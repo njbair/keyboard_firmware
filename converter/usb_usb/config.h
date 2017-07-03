@@ -18,29 +18,22 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #ifndef CONFIG_H
 #define CONFIG_H
 
-
+/* USB Device descriptor parameter */
 #define VENDOR_ID       0xFEED
 #define PRODUCT_ID      0x005B
 #define DEVICE_VER      0x0814
 #define MANUFACTURER    t.m.k.
 #define PRODUCT         USB to USB keyboard converter
-
-
 #define DESCRIPTION     Product from t.m.k. keyboard firmware project
-
 
 /* matrix size */
 #define MATRIX_ROWS 32
 #define MATRIX_COLS 8
 
 /* key combination for command */
-#define IS_COMMAND() (keyboard_report->mods == (MOD_BIT(KC_LSHIFT) | MOD_BIT(KC_RSHIFT))) 
-
-/* Enable these layers by default. See matrix.c for details */
-#define CONFIG_H_ENABLE_LAYERS \
-    [4] = 1, \
-    [5] = 1, \
-    [8] = 1
+#define IS_COMMAND() ( \
+    keyboard_report->mods == (MOD_BIT(KC_LSHIFT) | MOD_BIT(KC_RSHIFT)) \
+)
 
 /* Set the default layer because no Boot Magic (boo!) */
 #define CONFIG_H_DEFAULT_LAYER 1

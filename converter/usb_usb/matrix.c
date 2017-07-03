@@ -23,6 +23,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include "print.h"
 #include "debug.h"
 #include "matrix.h"
+#include "init.h"
 
 /* KEY CODE to Matrix
  *
@@ -83,6 +84,8 @@ void matrix_init(void) {
         }
     }
 #endif
+
+    user_init_actions();
 }
 bool matrix_has_ghost(void) { return false; }
 

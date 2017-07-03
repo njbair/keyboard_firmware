@@ -10,6 +10,7 @@ TMK_DIR = ../../module/tmk/tmk_core
 SRC = keymap_common.c \
 	matrix.c \
 	main.cpp \
+	init.c \
 	keymaps/$(KEYMAP).c
 
 CONFIG_H = config.h
@@ -26,7 +27,7 @@ OPT_DEFS += -DINTERRUPT_CONTROL_ENDPOINT
 
 # Build Options
 #BOOTMAGIC_ENABLE = yes
-MOUSEKEY_ENABLE = yes	# Mouse keys
+#MOUSEKEY_ENABLE = yes	# Mouse keys
 EXTRAKEY_ENABLE = yes	# Media control and System control
 CONSOLE_ENABLE = yes	# Console for debug
 COMMAND_ENABLE = yes    # Commands for debug and configuration
