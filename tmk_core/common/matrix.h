@@ -14,7 +14,6 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
-
 #ifndef MATRIX_H
 #define MATRIX_H
 
@@ -51,7 +50,7 @@ void matrix_init(void);
 uint8_t matrix_scan(void);
 /* whether modified from previous scan. used after matrix_scan. */
 bool matrix_is_modified(void) __attribute__ ((deprecated));
-/* whether a swtich is on */
+/* whether a switch is on */
 bool matrix_is_on(uint8_t row, uint8_t col);
 /* matrix state on row */
 matrix_row_t matrix_get_row(uint8_t row);
@@ -63,9 +62,20 @@ void matrix_print(void);
 void matrix_power_up(void);
 void matrix_power_down(void);
 
-/* keyboard-specific setup/loop functionality */
-void * matrix_init_kb(void);
-void * matrix_scan_kb(void);
+/* executes code for Quantum */
+void matrix_init_quantum(void);
+void matrix_scan_quantum(void);
+
+void matrix_init_kb(void);
+void matrix_scan_kb(void);
+
+void matrix_init_user(void);
+void matrix_scan_user(void);
+
+#ifdef I2C_SPLIT
+	void slave_matrix_init(void);
+	uint8_t slave_matrix_scan(void);
+#endif
 
 #ifdef __cplusplus
 }
