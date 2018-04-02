@@ -36,6 +36,10 @@ static void debug_tapping_key(void);
 static void debug_waiting_buffer(void);
 
 
+/** \brief Action Tapping Process
+ *
+ * FIXME: Needs doc
+ */
 void action_tapping_process(keyrecord_t record)
 {
     if (process_tapping(&record)) {
@@ -70,7 +74,7 @@ void action_tapping_process(keyrecord_t record)
 }
 
 
-/* Tapping
+/** \brief Tapping
  *
  * Rule: Tap key is typed(pressed and released) within TAPPING_TERM.
  *       (without interfering by typing other key)
@@ -89,21 +93,21 @@ bool process_tapping(keyrecord_t *keyp)
                     debug("Tapping: First tap(0->1).\n");
                     tapping_key.tap.count = 1;
                     debug_tapping_key();
-                    process_action(&tapping_key);
+                    process_record(&tapping_key);
 
                     // copy tapping state
                     keyp->tap = tapping_key.tap;
                     // enqueue
                     return false;
                 }
-#if TAPPING_TERM >= 500
+#if TAPPING_TERM >= 500 || defined PERMISSIVE_HOLD
                 /* Process a key typed within TAPPING_TERM
                  * This can register the key before settlement of tapping,
                  * useful for long TAPPING_TERM but may prevent fast typing.
                  */
                 else if (IS_RELEASED(event) && waiting_buffer_typed(event)) {
                     debug("Tapping: End. No tap. Interfered by typing key\n");
-                    process_action(&tapping_key);
+                    process_record(&tapping_key);
                     tapping_key = (keyrecord_t){};
                     debug_tapping_key();
                     // enqueue
@@ -131,7 +135,7 @@ bool process_tapping(keyrecord_t *keyp)
                     }
                     // Release of key should be process immediately.
                     debug("Tapping: release event of a key pressed before tapping\n");
-                    process_action(keyp);
+                    process_record(keyp);
                     return true;
                 }
                 else {
@@ -139,7 +143,7 @@ bool process_tapping(keyrecord_t *keyp)
                     if (event.pressed) {
                         tapping_key.tap.interrupted = true;
                     }
-                    // enqueue 
+                    // enqueue
                     return false;
                 }
             }
@@ -148,7 +152,7 @@ bool process_tapping(keyrecord_t *keyp)
                 if (IS_TAPPING_KEY(event.key) && !event.pressed) {
                     debug("Tapping: Tap release("); debug_dec(tapping_key.tap.count); debug(")\n");
                     keyp->tap = tapping_key.tap;
-                    process_action(keyp);
+                    process_record(keyp);
                     tapping_key = *keyp;
                     debug_tapping_key();
                     return true;
@@ -157,7 +161,7 @@ bool process_tapping(keyrecord_t *keyp)
                     if (tapping_key.tap.count > 1) {
                         debug("Tapping: Start new tap with releasing last tap(>1).\n");
                         // unregister key
-                        process_action(&(keyrecord_t){
+                        process_record(&(keyrecord_t){
                                 .tap = tapping_key.tap,
                                 .event.key = tapping_key.event.key,
                                 .event.time = event.time,
@@ -175,7 +179,7 @@ bool process_tapping(keyrecord_t *keyp)
                     if (!IS_NOEVENT(event)) {
                         debug("Tapping: key event while last tap(>0).\n");
                     }
-                    process_action(keyp);
+                    process_record(keyp);
                     return true;
                 }
             }
@@ -185,7 +189,7 @@ bool process_tapping(keyrecord_t *keyp)
             if (tapping_key.tap.count == 0) {
                 debug("Tapping: End. Timeout. Not tap(0): ");
                 debug_event(event); debug("\n");
-                process_action(&tapping_key);
+                process_record(&tapping_key);
                 tapping_key = (keyrecord_t){};
                 debug_tapping_key();
                 return false;
@@ -193,7 +197,7 @@ bool process_tapping(keyrecord_t *keyp)
                 if (IS_TAPPING_KEY(event.key) && !event.pressed) {
                     debug("Tapping: End. last timeout tap release(>0).");
                     keyp->tap = tapping_key.tap;
-                    process_action(keyp);
+                    process_record(keyp);
                     tapping_key = (keyrecord_t){};
                     return true;
                 }
@@ -201,7 +205,7 @@ bool process_tapping(keyrecord_t *keyp)
                     if (tapping_key.tap.count > 1) {
                         debug("Tapping: Start new tap with releasing last timeout tap(>1).\n");
                         // unregister key
-                        process_action(&(keyrecord_t){
+                        process_record(&(keyrecord_t){
                                 .tap = tapping_key.tap,
                                 .event.key = tapping_key.event.key,
                                 .event.time = event.time,
@@ -219,7 +223,7 @@ bool process_tapping(keyrecord_t *keyp)
                     if (!IS_NOEVENT(event)) {
                         debug("Tapping: key event while last timeout tap(>0).\n");
                     }
-                    process_action(keyp);
+                    process_record(keyp);
                     return true;
                 }
             }
@@ -228,20 +232,21 @@ bool process_tapping(keyrecord_t *keyp)
         if (WITHIN_TAPPING_TERM(event)) {
             if (event.pressed) {
                 if (IS_TAPPING_KEY(event.key)) {
+#ifndef TAPPING_FORCE_HOLD
                     if (!tapping_key.tap.interrupted && tapping_key.tap.count > 0) {
                         // sequential tap.
                         keyp->tap = tapping_key.tap;
                         if (keyp->tap.count < 15) keyp->tap.count += 1;
                         debug("Tapping: Tap press("); debug_dec(keyp->tap.count); debug(")\n");
-                        process_action(keyp);
+                        process_record(keyp);
                         tapping_key = *keyp;
                         debug_tapping_key();
                         return true;
-                    } else {
-                        // FIX: start new tap again
-                        tapping_key = *keyp;
-                        return true;
                     }
+#endif
+                    // FIX: start new tap again
+                    tapping_key = *keyp;
+                    return true;
                 } else if (is_tap_key(event.key)) {
                     // Sequential tap can be interfered with other tap key.
                     debug("Tapping: Start with interfering other tap.\n");
@@ -253,16 +258,16 @@ bool process_tapping(keyrecord_t *keyp)
                     // should none in buffer
                     // FIX: interrupted when other key is pressed
                     tapping_key.tap.interrupted = true;
-                    process_action(keyp);
+                    process_record(keyp);
                     return true;
                 }
             } else {
                 if (!IS_NOEVENT(event)) debug("Tapping: other key just after tap.\n");
-                process_action(keyp);
+                process_record(keyp);
                 return true;
             }
         } else {
-            // FIX: process_aciton here?
+            // FIX: process_action here?
             // timeout. no sequential tap.
             debug("Tapping: End(Timeout after releasing last tap): ");
             debug_event(event); debug("\n");
@@ -276,19 +281,21 @@ bool process_tapping(keyrecord_t *keyp)
         if (event.pressed && is_tap_key(event.key)) {
             debug("Tapping: Start(Press tap key).\n");
             tapping_key = *keyp;
+            process_record_tap_hint(&tapping_key);
             waiting_buffer_scan_tap();
             debug_tapping_key();
             return true;
         } else {
-            process_action(keyp);
+            process_record(keyp);
             return true;
         }
     }
 }
 
 
-/*
- * Waiting buffer
+/** \brief Waiting buffer enq
+ *
+ * FIXME: Needs docs
  */
 bool waiting_buffer_enq(keyrecord_t record)
 {
@@ -308,12 +315,20 @@ bool waiting_buffer_enq(keyrecord_t record)
     return true;
 }
 
+/** \brief Waiting buffer clear
+ *
+ * FIXME: Needs docs
+ */
 void waiting_buffer_clear(void)
 {
     waiting_buffer_head = 0;
     waiting_buffer_tail = 0;
 }
 
+/** \brief Waiting buffer typed
+ *
+ * FIXME: Needs docs
+ */
 bool waiting_buffer_typed(keyevent_t event)
 {
     for (uint8_t i = waiting_buffer_tail; i != waiting_buffer_head; i = (i + 1) % WAITING_BUFFER_SIZE) {
@@ -324,6 +339,11 @@ bool waiting_buffer_typed(keyevent_t event)
     return false;
 }
 
+/** \brief Waiting buffer has anykey pressed
+ *
+ * FIXME: Needs docs
+ */
+__attribute__((unused))
 bool waiting_buffer_has_anykey_pressed(void)
 {
     for (uint8_t i = waiting_buffer_tail; i != waiting_buffer_head; i = (i + 1) % WAITING_BUFFER_SIZE) {
@@ -332,7 +352,10 @@ bool waiting_buffer_has_anykey_pressed(void)
     return false;
 }
 
-/* scan buffer for tapping */
+/** \brief Scan buffer for tapping
+ *
+ * FIXME: Needs docs
+ */
 void waiting_buffer_scan_tap(void)
 {
     // tapping already is settled
@@ -346,7 +369,7 @@ void waiting_buffer_scan_tap(void)
                 WITHIN_TAPPING_TERM(waiting_buffer[i].event)) {
             tapping_key.tap.count = 1;
             waiting_buffer[i].tap.count = 1;
-            process_action(&tapping_key);
+            process_record(&tapping_key);
 
             debug("waiting_buffer_scan_tap: found at ["); debug_dec(i); debug("]\n");
             debug_waiting_buffer();
@@ -356,14 +379,19 @@ void waiting_buffer_scan_tap(void)
 }
 
 
-/*
- * debug print
+/** \brief Tapping key debug print
+ *
+ * FIXME: Needs docs
  */
 static void debug_tapping_key(void)
 {
     debug("TAPPING_KEY="); debug_record(tapping_key); debug("\n");
 }
 
+/** \brief Waiting buffer debug print
+ *
+ * FIXME: Needs docs
+ */
 static void debug_waiting_buffer(void)
 {
     debug("{ ");

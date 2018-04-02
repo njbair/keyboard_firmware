@@ -1,6 +1,6 @@
 #include <stdint.h>
 #include <stdbool.h>
-#include <util/delay.h>
+#include "wait.h"
 #include "matrix.h"
 #include "bootloader.h"
 #include "debug.h"
@@ -10,7 +10,12 @@
 #include "eeconfig.h"
 #include "bootmagic.h"
 
+keymap_config_t keymap_config;
 
+/** \brief Bootmagic
+ *
+ * FIXME: needs doc
+ */
 void bootmagic(void)
 {
     /* check signature */
@@ -19,9 +24,9 @@ void bootmagic(void)
     }
 
     /* do scans in case of bounce */
-    print("boogmagic scan: ... ");
+    print("bootmagic scan: ... ");
     uint8_t scan = 100;
-    while (scan--) { matrix_scan(); _delay_ms(10); }
+    while (scan--) { matrix_scan(); wait_ms(10); }
     print("done.\n");
 
     /* bootmagic skip */
@@ -52,7 +57,7 @@ void bootmagic(void)
             debug_config.enable = !debug_config.enable;
         }
     }
-    eeconfig_write_debug(debug_config.raw);
+    eeconfig_update_debug(debug_config.raw);
 
     /* keymap config */
     keymap_config.raw = eeconfig_read_keymap();
@@ -80,11 +85,7 @@ void bootmagic(void)
     if (bootmagic_scan_keycode(BOOTMAGIC_HOST_NKRO)) {
         keymap_config.nkro = !keymap_config.nkro;
     }
-    eeconfig_write_keymap(keymap_config.raw);
-
-#ifdef NKRO_ENABLE
-    keyboard_nkro = keymap_config.nkro;
-#endif
+    eeconfig_update_keymap(keymap_config.raw);
 
     /* default layer */
     uint8_t default_layer = 0;
@@ -97,7 +98,7 @@ void bootmagic(void)
     if (bootmagic_scan_keycode(BOOTMAGIC_KEY_DEFAULT_LAYER_6)) { default_layer |= (1<<6); }
     if (bootmagic_scan_keycode(BOOTMAGIC_KEY_DEFAULT_LAYER_7)) { default_layer |= (1<<7); }
     if (default_layer) {
-        eeconfig_write_default_layer(default_layer);
+        eeconfig_update_default_layer(default_layer);
         default_layer_set((uint32_t)default_layer);
     } else {
         default_layer = eeconfig_read_default_layer();
@@ -105,6 +106,10 @@ void bootmagic(void)
     }
 }
 
+/** \brief Scan Keycode
+ *
+ * FIXME: needs doc
+ */
 static bool scan_keycode(uint8_t keycode)
 {
     for (uint8_t r = 0; r < MATRIX_ROWS; r++) {
@@ -120,6 +125,10 @@ static bool scan_keycode(uint8_t keycode)
     return false;
 }
 
+/** \brief Bootmagic Scan Keycode
+ *
+ * FIXME: needs doc
+ */
 bool bootmagic_scan_keycode(uint8_t keycode)
 {
     if (!scan_keycode(BOOTMAGIC_KEY_SALT)) return false;
