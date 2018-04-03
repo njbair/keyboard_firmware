@@ -17,7 +17,9 @@ const macro_t *action_get_macro(keyrecord_t *record, uint8_t id, uint8_t opt __a
                     T(O),T(N), T(SPACE),
                     T(M),T(Y), T(SPACE),
                     D(LSHIFT),T(T),T(M),T(K),U(LSHIFT), T(SPACE),
-                    D(LSHIFT),T(A),U(LSHIFT),T(L),T(P),T(S),T(6),T(4), T(SPACE),
+                    D(LSHIFT),T(H),T(H),T(K),T(B),U(LSHIFT), T(SPACE),
+                    T(2), T(SPACE),
+                    D(LSHIFT),T(P),U(LSHIFT),T(R),T(O),T(F),T(E),T(S),T(S),T(I),T(O),T(N),T(A),T(L), T(SPACE),
                     T(K),T(E),T(Y),T(B),T(O),T(A),T(R),T(D),
                     T(ENTER),
                     END

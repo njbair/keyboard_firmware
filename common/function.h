@@ -1,6 +1,7 @@
 #include "action_layer.h"
 #include "action_util.h"
 #include "action.h"
+#include "print.h"
 
 enum function_id {
     F_SWITCH_LAYOUT_QWERTY,
@@ -64,10 +65,12 @@ void action_function(keyrecord_t *record, uint8_t id, uint8_t opt __attribute__ 
             if (record->event.pressed) {
                 qwerty_fallback_previous_state = default_layer_state;
                 default_layer_set(1UL<<L_QWERTY);
-                add_weak_mods(MOD_LCTL);
+                add_mods(MOD_BIT(KC_LCTL));
+                send_keyboard_report();
             } else {
                 default_layer_set(qwerty_fallback_previous_state);
-                del_weak_mods(MOD_LCTL);
+                del_mods(MOD_BIT(KC_LCTL));
+                send_keyboard_report();
                 clear_keyboard();
             }
             break;

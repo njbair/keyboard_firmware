@@ -8,4 +8,6 @@ enum keymap_layer {
     L_OVERLAY_GAMER,
     L_OVERLAY_KEYMAP_SETTINGS,
     L_FN_PRIMARY,
+    L_KP_GAMER,
+    L_KP_GAMER_L2,
 };

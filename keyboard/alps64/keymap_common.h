@@ -31,11 +31,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 
 extern const uint8_t keymaps[][MATRIX_ROWS][MATRIX_COLS];
-extern const uint16_t fn_actions[];
+extern const action_t fn_actions[];
 
 
 /* Alps64 keymap definition macro */
-#define KEYMAP( \
+#define KEYMAP_ALPS64( \
     K36, K37, K46, K47, K56, K57, K66, K67, K76, K77, K06, K07, K17, K26, K27, \
     K34, K35, K44, K45, K54, K55, K64, K65, K75, K05, K15, K16, K25, K24, \
     K32, K33, K43, K52, K53, K63, K73, K74, K03, K04, K13, K14, K23, \
@@ -53,13 +53,13 @@ extern const uint16_t fn_actions[];
 }
 
 /* AEK US */
-#define KEYMAP_AEK( \
+#define KEYMAP_ALPS64_AEK( \
     K36, K37, K46, K47, K56, K57, K66, K67, K76, K77, K06, K07, K17, K27, \
     K34, K35, K44, K45, K54, K55, K64, K65, K75, K05, K15, K16, K25, K24, \
     K32, K33, K43, K52, K53, K63, K73, K74, K03, K04, K13, K14, K23, \
     K31, K42, K51, K61, K62, K71, K72, K01, K02, K11, K12, K21, \
     K30, K40, K50,           K60,                          K00, K10, K20  \
-) KEYMAP( \
+) KEYMAP_ALPS64( \
     K36, K37, K46, K47, K56, K57, K66, K67, K76, K77, K06, K07, K17, NO,  K27, \
     K34, K35, K44, K45, K54, K55, K64, K65, K75, K05, K15, K16, K25, K24, \
     K32, K33, K43, K52, K53, K63, K73, K74, K03, K04, K13, K14, K23, \
@@ -68,13 +68,13 @@ extern const uint16_t fn_actions[];
 )
 
 /* Dell ANSI */
-#define KEYMAP_ANSI( \
+#define KEYMAP_ALPS64_ANSI( \
     K36, K37, K46, K47, K56, K57, K66, K67, K76, K77, K06, K07, K17, K27, \
     K34, K35, K44, K45, K54, K55, K64, K65, K75, K05, K15, K16, K25, K24, \
     K32, K33, K43, K52, K53, K63, K73, K74, K03, K04, K13, K14, K23, \
     K31, K42, K51, K61, K62, K71, K72, K01, K02, K11, K12, K21, \
     K30, K40, K50,           K60,                     K70, K00, K10, K20  \
-) KEYMAP( \
+) KEYMAP_ALPS64( \
     K36, K37, K46, K47, K56, K57, K66, K67, K76, K77, K06, K07, K17, NO,  K27, \
     K34, K35, K44, K45, K54, K55, K64, K65, K75, K05, K15, K16, K25, K24, \
     K32, K33, K43, K52, K53, K63, K73, K74, K03, K04, K13, K14, K23, \
@@ -83,13 +83,13 @@ extern const uint16_t fn_actions[];
 )
 
 /* HHKB */
-#define KEYMAP_HHKB( \
+#define KEYMAP_ALPS64_HHKB( \
     K36, K37, K46, K47, K56, K57, K66, K67, K76, K77, K06, K07, K17, K26, K27, \
     K34, K35, K44, K45, K54, K55, K64, K65, K75, K05, K15, K16, K25, K24, \
     K32, K33, K43, K52, K53, K63, K73, K74, K03, K04, K13, K14, K23, \
     K31, K42, K51, K61, K62, K71, K72, K01, K02, K11, K12, K21, K22, \
          K40, K50,           K60,                K70, K00 \
-) KEYMAP( \
+) KEYMAP_ALPS64( \
     K36, K37, K46, K47, K56, K57, K66, K67, K76, K77, K06, K07, K17, K26, K27, \
     K34, K35, K44, K45, K54, K55, K64, K65, K75, K05, K15, K16, K25, K24, \
     K32, K33, K43, K52, K53, K63, K73, K74, K03, K04, K13, K14, K23, \
@@ -98,13 +98,13 @@ extern const uint16_t fn_actions[];
 )
 
 /* Infinity */
-#define KEYMAP_INFINITY( \
+#define KEYMAP_ALPS64_INFINITY( \
     K36, K37, K46, K47, K56, K57, K66, K67, K76, K77, K06, K07, K17, K26, K27, \
     K34, K35, K44, K45, K54, K55, K64, K65, K75, K05, K15, K16, K25, K24, \
     K32, K33, K43, K52, K53, K63, K73, K74, K03, K04, K13, K14, K23, \
     K31, K42, K51, K61, K62, K71, K72, K01, K02, K11, K12, K21, K22, \
     K30, K40, K50,           K60,                     K70, K00, K10, K20  \
-) KEYMAP( \
+) KEYMAP_ALPS64( \
     K36, K37, K46, K47, K56, K57, K66, K67, K76, K77, K06, K07, K17, K26, K27, \
     K34, K35, K44, K45, K54, K55, K64, K65, K75, K05, K15, K16, K25, K24, \
     K32, K33, K43, K52, K53, K63, K73, K74, K03, K04, K13, K14, K23, \
