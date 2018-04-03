@@ -23,7 +23,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include "debug.h"
 #include "util.h"
 #include "matrix.h"
-#include "init.h"
 
 #ifndef DEBOUNCE
 #   define DEBOUNCE 0
@@ -60,8 +59,6 @@ void matrix_init(void)
         matrix[i] = 0;
         matrix_debouncing[i] = 0;
     }
-
-    user_init_actions();
 }
 
 uint8_t matrix_scan(void)

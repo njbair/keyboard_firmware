@@ -10,6 +10,7 @@ Quick Links
 Here are some quick links to my custom TMK layouts in this repo for various
 boards:
 
+* [HHKB Professional 2](keyboard/hhkb)
 * [Alps64](keyboard/alps64)
 * [Monarch](keyboard/monarch)
 * [Infinity](keyboard/infinity) (ChibiOS)
@@ -17,6 +18,37 @@ boards:
 * [Unicomp PC-122](converter/pc122_usb) (Hard-wired Teensy with TMK PS2-USB converter)
 * [Planck](keyboard/planck)
 * [USB to USB Converter](converter/usb_usb)
+
+------------------------------------------------------------------------
+
+Why Maintain Your Own Repository?
+=================================
+
+My main reason for maintaining this repo is that my keyboard use presents unique demands which I believe can be solved through creative use of firmware.
+
+1. I am a happy Dvorak user. I believe firmware can overcome some of the common shortcomings of the Dvorak layout.
+2. I occasionally play PC games.
+3. I have *a lot* of keyboards.
+4. I support *a lot* of computers.
+
+It Makes a Dvorak User's Life Easier
+------------------------------------
+
+What's the single biggest complaint about Dvorak among those who actually use it? In my experience, it's the fact that the most common keyboard shortcuts, Ctrl+Z/X/C/V, are remapped all over the place. Well, what if a simple firmware function could solve this issue?
+
+Borrowing the idea from Mac OSX's Dvorak-QWERTY layout, I've created a firmware function to re-map the alpha keys back to QWERTY whenever the Left Ctrl modifier is pressed. Having this support at the hardware level means that I can plug my keyboard into any machine and get started right away, regardless of how the user has their software keymap configured.
+
+It Makes PC Games More Fun
+--------------------------
+
+My standard layout uses SpaceFn, which is something you can enable through most graphical firmware layout editors. However, SpaceFn and PC games don't mix. Dvorak and PC games don't really mix, either. For these reasons, I've implemented a special QWERTY overlay for gaming which disables SpaceFn (and Enter Fn), and while we're at it disables the Win keys as well.
+
+I still lose at Fortnite, but at least now it's not my keyboard's fault.
+
+It Makes Maintaining Lots of Keyboards More Practical
+-----------------------------------------------------
+
+If I tried to use graphical keyboard firmware editors for every keyboard I own, I would have given up by now. I also wouldn't be able to consistently implement all my custom tweaks. By creating this repository and extending TMK/QMK in a scalable and maintainable way, it not only eliminates a lot of the hassle, but actually makes it kind of fun.
 
 ------------------------------------------------------------------------
 

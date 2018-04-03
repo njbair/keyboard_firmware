@@ -1,7 +1,6 @@
 #include "action_layer.h"
 #include "action_util.h"
 #include "action.h"
-#include "print.h"
 
 enum function_id {
     F_SWITCH_LAYOUT_QWERTY,
@@ -28,9 +27,6 @@ void action_function(keyrecord_t *record, uint8_t id, uint8_t opt __attribute__ 
                 layer_on(L_FN_SPACEFN);
                 layer_off(L_OVERLAY_GAMER);
                 clear_keyboard();
-                xprintf("Default layer: QWERTY [%d]\n", L_QWERTY);
-                xprintf("SpaceFn enabled.\n");
-                xprintf("Gaming overrides disabled.\n");
             }
             break;
         case F_SWITCH_LAYOUT_DVORAK:
@@ -39,9 +35,6 @@ void action_function(keyrecord_t *record, uint8_t id, uint8_t opt __attribute__ 
                 layer_on(L_FN_SPACEFN);
                 layer_off(L_OVERLAY_GAMER);
                 clear_keyboard();
-                xprintf("Default layer: Dvorak [%d]\n", L_DVORAK);
-                xprintf("SpaceFn enabled.\n");
-                xprintf("Gaming overrides disabled.\n");
             }
             break;
         case F_SWITCH_LAYOUT_COLEMAK:
@@ -50,9 +43,6 @@ void action_function(keyrecord_t *record, uint8_t id, uint8_t opt __attribute__ 
                 layer_on(L_FN_SPACEFN);
                 layer_off(L_OVERLAY_GAMER);
                 clear_keyboard();
-                xprintf("Default layer: Colemak [%d]\n", L_COLEMAK);
-                xprintf("SpaceFn enabled.\n");
-                xprintf("Gaming overrides disabled.\n");
             }
             break;
         case F_SWITCH_LAYOUT_GAMER:
@@ -61,9 +51,6 @@ void action_function(keyrecord_t *record, uint8_t id, uint8_t opt __attribute__ 
                 layer_off(L_FN_SPACEFN);
                 layer_on(L_OVERLAY_GAMER);
                 clear_keyboard();
-                xprintf("Default layer: QWERTY [%d]\n", L_QWERTY);
-                xprintf("SpaceFn disabled.\n");
-                xprintf("Gaming overrides enabled.\n");
             }
             break;
         /**
@@ -77,10 +64,10 @@ void action_function(keyrecord_t *record, uint8_t id, uint8_t opt __attribute__ 
             if (record->event.pressed) {
                 qwerty_fallback_previous_state = default_layer_state;
                 default_layer_set(1UL<<L_QWERTY);
-                add_weak_mods(MOD_LCTL);
+                add_mods(MOD_LCTL);
             } else {
                 default_layer_set(qwerty_fallback_previous_state);
-                del_weak_mods(MOD_LCTL);
+                del_mods(MOD_LCTL);
                 clear_keyboard();
             }
             break;

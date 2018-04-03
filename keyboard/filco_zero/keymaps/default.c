@@ -126,7 +126,7 @@ const uint8_t PROGMEM keymaps[][MATRIX_COLS][MATRIX_ROWS] = {
 /**
  * Fn action definition
  */
-const uint16_t PROGMEM fn_actions[] = {
+const action_t PROGMEM fn_actions[] = {
     [0]   = ACTION_FUNCTION(F_SWITCH_LAYOUT_QWERTY),
     [1]   = ACTION_FUNCTION(F_SWITCH_LAYOUT_DVORAK),
     [2]   = ACTION_FUNCTION(F_SWITCH_LAYOUT_COLEMAK),
