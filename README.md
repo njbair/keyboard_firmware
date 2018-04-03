@@ -33,6 +33,7 @@ Directory Structure
 
 ```
 [root]
+|-- common
 |-- converter
 |-- keyboard
 |   |-- keyboard_a
@@ -53,9 +54,27 @@ Directory Structure
 
 ### Keyboards & Converters
 
-The *converter* and *keyboard* directories are used to store per-device configurations. For a new project, I start by copying over something similar from the TMK collection. If you do this, be sure to change the `TMK_DIR` in the Makefile to point to the TMK core in the *modules* folder:
+The *converter* and *keyboard* directories are used to store per-device configurations. For a new project, I start by copying over something similar from the TMK collection. Here's a good starting point:
+
+```
+keymaps/
+Makefile
+config.h
+keymap_common.h
+macro.h
+```
+
+If you do this, be sure to change the `TMK_DIR` in the Makefile to point to the TMK core in the *modules* folder:
 
     TMK_DIR = ../../module/tmk/tmk_core
+
+You'll also need to point any additional sources back to the parent TMK folder. So then, this line:
+
+    SRC ?= matrix.c
+
+...would become this:
+
+    SRC ?= ../../module/tmk/keyboard/alps64/matrix.c
 
 Next, I move all layout-specific keymap files to a newly-created *keymaps* directory, to help cut down on clutter and simplify file naming:
 
@@ -72,6 +91,14 @@ ifdef KEYMAP
 else
     SRC := keymaps/ansi.c $(SRC)
 endif
+```
+
+Additionally, I have some custom configurations which are common among all my builds. I place these in the */common* directory in the project root. Then I add them to the keyboard Makefile with a few extra lines:
+
+```
+NJBAIR_COMMON_DIR ?= ../../common
+SRC += $(NJBAIR_COMMON_DIR)/init.c
+VPATH += $(NJBAIR_COMMON_DIR)
 ```
 
 Now you should be good to go.
