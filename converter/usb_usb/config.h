@@ -30,18 +30,18 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 
 /* matrix size */
-#define MATRIX_ROWS 32
-#define MATRIX_COLS 8
+#define MATRIX_ROWS 16
+#define MATRIX_COLS 16
 
 /* key combination for command */
 #define IS_COMMAND() (keyboard_report->mods == (MOD_BIT(KC_LSHIFT) | MOD_BIT(KC_RSHIFT))) 
 
-/* Enable these layers by default. See matrix.c for details */
+/* Enable these layers by default. See /common/init.c for details */
 #define CONFIG_H_ENABLE_LAYERS \
-    [4] = 1, \
-    [5] = 1, \
-    [8] = 1
+    [L_OVERLAY_CTRL_REMAP] = 1, \
+    [L_FN_SPACEFN] = 1, \
+    [L_FN_PRIMARY] = 1
 
-/* Set the default layer because no Boot Magic (boo!) */
-#define CONFIG_H_DEFAULT_LAYER 1
+/* Set the default layer because no Boot Magic */
+#define CONFIG_H_DEFAULT_LAYER L_DVORAK
 #endif

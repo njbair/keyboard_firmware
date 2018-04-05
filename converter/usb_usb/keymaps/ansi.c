@@ -1,10 +1,12 @@
 #include "keymap_common.h"
-#include "macro.c"
-#include "function.c"
+#include "layer.h"
+#include "function.h"
+#include "macro.h"
+#include "fn_actions.h"
 
 const uint8_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     /* QWERTY */
-    [0] = KEYMAP(
+    [L_QWERTY] = KEYMAP(
     ESC, F1,  F2,  F3,  F4,  F5,  F6,  F7,  F8,  F9,  F10, F11, F12,           PSCR,SLCK,BRK,
     GRV, 1,   2,   3,   4,   5,   6,   7,   8,   9,   0,   MINS,EQL, BSPC,     INS, HOME,PGUP,     NLCK,PSLS,PAST,PMNS,
     TAB, Q,   W,   E,   R,   T,   Y,   U,   I,   O,   P,   LBRC,RBRC,BSLS,     DEL, END, PGDN,     P7,  P8,  P9,
@@ -14,7 +16,7 @@ const uint8_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     ),
 
     /* Dvorak */
-    [1] = KEYMAP(
+    [L_DVORAK] = KEYMAP(
     TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,          TRNS,TRNS,TRNS,
     TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,LBRC,RBRC,TRNS,     TRNS,TRNS,TRNS,     TRNS,TRNS,TRNS,TRNS,
     TRNS,QUOT,COMM,DOT, P,   Y,   F,   G,   C,   R,   L,   SLSH,EQL, TRNS,     TRNS,TRNS,TRNS,     TRNS,TRNS,TRNS,
@@ -24,7 +26,7 @@ const uint8_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     ),
 
     /* Colemak */
-    [2] = KEYMAP(
+    [L_COLEMAK] = KEYMAP(
     TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,          TRNS,TRNS,TRNS,
     TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,     TRNS,TRNS,TRNS,     TRNS,TRNS,TRNS,TRNS,
     TRNS,TRNS,TRNS,F,   P,   G,   J,   L,   U,   Y,   SCLN,TRNS,TRNS,TRNS,     TRNS,TRNS,TRNS,     TRNS,TRNS,TRNS,
@@ -33,83 +35,62 @@ const uint8_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     TRNS,TRNS,TRNS,          TRNS,                    TRNS,TRNS,TRNS,TRNS,     TRNS,TRNS,TRNS,     TRNS,     TRNS,TRNS
     ),
 
-    /* HHKB Function Layer */
-    [3] = KEYMAP(
-    TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,          TRNS,TRNS,TRNS,
-    NO,  F1,  F2,  F3,  F4,  F5,  F6,  F7,  F8,  F9,  F10, F11, F12, DEL,      TRNS,TRNS,TRNS,    TRNS,TRNS,TRNS,TRNS,
-    CAPS,NO,  NO,  NO,  NO,  NO,  NO,  NO,  PSCR,SLCK,PAUS,UP,  NO,  INS,      TRNS,TRNS,TRNS,    TRNS,TRNS,TRNS,
-    TRNS,VOLD,VOLU,MUTE,NO,  NO,  PAST,PSLS,HOME,PGUP,LEFT,RGHT,TRNS,                             TRNS,TRNS,TRNS,TRNS,
-    TRNS,NO,  NO,  NO,  NO,  NO,  PPLS,PMNS,END, PGDN,DOWN,TRNS,                    TRNS,         TRNS,TRNS,TRNS,
-    TRNS,TRNS,TRNS,          TRNS,                    TRNS,TRNS,TRNS,TRNS,     TRNS,TRNS,TRNS,    TRNS,     TRNS,TRNS
-    ),
-
-    /**
-     * Default keyswaps
-     *
-     * The converter doesn't have Boot Magic (boo!) so instead we need to change
-     * some options manually.
-     */
-    [4] = KEYMAP(
+    [L_OVERLAY_CTRL_REMAP] = KEYMAP(
     TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,          TRNS,TRNS,TRNS,
     TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,     TRNS,TRNS,TRNS,     TRNS,TRNS,TRNS,TRNS,
     TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,     TRNS,TRNS,TRNS,     TRNS,TRNS,TRNS,
     LCTL,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,                              TRNS,TRNS,TRNS,TRNS,
     TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,                    TRNS,          TRNS,TRNS,TRNS,
-    CAPS,TRNS,TRNS,          TRNS,                    TRNS,TRNS,TRNS,TRNS,     TRNS,TRNS,TRNS,     TRNS,     TRNS,TRNS
+    CTLQ,TRNS,TRNS,          TRNS,                    TRNS,TRNS,TRNS,CTLC,     TRNS,TRNS,TRNS,     TRNS,     TRNS,TRNS
+    ),
+
+    /* HHKB Function Layer */
+    [L_OVERLAY_HHKB_FN] = KEYMAP(
+    TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,          TRNS,TRNS,TRNS,
+    NO,  F1,  F2,  F3,  F4,  F5,  F6,  F7,  F8,  F9,  F10, F11, F12, DEL,      TRNS,TRNS,TRNS,    TRNS,TRNS,TRNS,TRNS,
+    CAPS,NO,  NO,  NO,  NO,  NO,  NO,  NO,  PSCR,SLCK,PAUS,UP,  NO,  INS,      TRNS,TRNS,TRNS,    TRNS,TRNS,TRNS,
+    TRNS,VOLD,VOLU,MUTE,NO,  NO,  PAST,PSLS,HOME,PGUP,LEFT,RGHT,TRNS,                             TRNS,TRNS,TRNS,TRNS,
+    TRNS,MSIG,NO,  NO,  NO,  NO,  PPLS,PMNS,END, PGDN,DOWN,TRNS,                    TRNS,         TRNS,TRNS,TRNS,
+    TRNS,TRNS,TRNS,          TRNS,                    TRNS,TRNS,TRNS,TRNS,     TRNS,TRNS,TRNS,    TRNS,     TRNS,TRNS
     ),
 
     /* SpaceFn & EnterFn */
-    [5] = KEYMAP(
+    [L_FN_SPACEFN] = KEYMAP(
     TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,          TRNS,TRNS,TRNS,
     TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,     TRNS,TRNS,TRNS,     TRNS,TRNS,TRNS,TRNS,
     TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,     TRNS,TRNS,TRNS,     TRNS,TRNS,TRNS,
-    TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,FN4,                               TRNS,TRNS,TRNS,TRNS,
+    TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,ENFN,                              TRNS,TRNS,TRNS,TRNS,
     TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,                    TRNS,          TRNS,TRNS,TRNS,
-    TRNS,TRNS,TRNS,          FN3,                     TRNS,TRNS,TRNS,TRNS,     TRNS,TRNS,TRNS,     TRNS,     TRNS,TRNS
+    TRNS,TRNS,TRNS,          SPFN,                    TRNS,TRNS,TRNS,TRNS,     TRNS,TRNS,TRNS,     TRNS,     TRNS,TRNS
     ),
 
-    /* Mouse keys */
-    [6] = KEYMAP(
+    /* Gaming overrides */
+    [L_OVERLAY_GAMER] = KEYMAP(
     TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,          TRNS,TRNS,TRNS,
-    TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,     TRNS,WH_U,TRNS,     TRNS,TRNS,TRNS,TRNS,
-    TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,     BTN1,WH_D,BTN2,     TRNS,TRNS,TRNS,
-    TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,                              TRNS,TRNS,TRNS,TRNS,
-    TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,                    MS_U,          TRNS,TRNS,TRNS,
-    TRNS,TRNS,TRNS,          TRNS,                    TRNS,TRNS,TRNS,TRNS,     MS_L,MS_D,MS_R,     TRNS,     TRNS,TRNS
+    TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,     TRNS,TRNS,TRNS,     TRNS,TRNS,TRNS,TRNS,
+    TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,     TRNS,TRNS,TRNS,     TRNS,TRNS,TRNS,
+    CAPS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,                              TRNS,TRNS,TRNS,TRNS,
+    TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,                    TRNS,          TRNS,TRNS,TRNS,
+    LCTL,NO,  TRNS,          TRNS,                    TRNS,NO,  NO,  RCTL,     TRNS,TRNS,TRNS,     TRNS,     TRNS,TRNS
     ),
 
     /* Keymap settings layer */
-    [7] = KEYMAP(
+    [L_OVERLAY_KEYMAP_SETTINGS] = KEYMAP(
     NO,  NO,  NO,  NO,  NO,  NO,  NO,  NO,  NO,  NO,  NO,  NO,  NO,            NO,  NO,  NO,
-    NO,  FN1, FN2, NO,  NO,  NO,  NO,  NO,  NO,  NO,  FN0, NO,  NO,  NO,       NO,  NO,  NO,      NO,  NO,  NO,  NO,
-    NO,  FN0, NO,  NO,  NO,  NO,  NO,  NO,  NO,  NO,  NO,  NO,  NO,  NO,       NO,  NO,  NO,      NO,  NO,  NO,
-    NO,  NO,  NO,  FN1, NO,  NO,  NO,  NO,  NO,  NO,  NO,  NO,  FN6,                              NO,  NO,  NO,  NO,
-    NO,  NO,  NO,  FN2, NO,  NO,  NO,  NO,  NO,  NO,  NO,  NO,                      NO,           NO,  NO,  NO,
-    NO,  NO,  NO,            FN6,                     NO,  NO,  NO,  NO,       NO,  NO,  NO,      NO,       NO,  NO
+    NO,  DVOR,COLE,NO,  NO,  NO,  NO,  NO,  NO,  NO,  QWER,NO,  NO,  NO,       NO,  NO,  NO,      NO,  NO,  NO,  NO,
+    NO,  QWER,NO,  NO,  NO,  NO,  NO,  NO,  NO,  NO,  NO,  NO,  NO,  NO,       NO,  NO,  NO,      NO,  NO,  NO,
+    TCTL,NO,  NO,  DVOR,NO,  GAME,NO,  NO,  NO,  NO,  NO,  NO,  TFN,                              NO,  NO,  NO,  NO,
+    NO,  NO,  NO,  COLE,NO,  NO,  NO,  NO,  NO,  NO,  NO,  NO,                      NO,           NO,  NO,  NO,
+    TCTL,NO,  NO,            TFN,                     NO,  NO,  NO,  TCTL,     NO,  NO,  NO,      NO,       NO,  NO
     ),
 
     /* Primary Fn layer */
-    [8] = KEYMAP(
+    [L_FN_PRIMARY] = KEYMAP(
     TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,          TRNS,TRNS,TRNS,
     TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,     TRNS,TRNS,TRNS,     TRNS,TRNS,TRNS,TRNS,
     TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,     TRNS,TRNS,TRNS,     TRNS,TRNS,TRNS,
     TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,                              TRNS,TRNS,TRNS,TRNS,
     TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,                    TRNS,          TRNS,TRNS,TRNS,
-    TRNS,TRNS,TRNS,          TRNS,                    TRNS,TRNS,FN5, TRNS,     TRNS,TRNS,TRNS,     TRNS,     TRNS,TRNS
+    TRNS,TRNS,TRNS,          TRNS,                    TRNS,TRNS,SETT,TRNS,     TRNS,TRNS,TRNS,     TRNS,     TRNS,TRNS
     ),
-};
-
-const uint16_t PROGMEM fn_actions[] = {
-    [0] = ACTION_DEFAULT_LAYER_SET(0),        // QWERTY layout
-    [1] = ACTION_DEFAULT_LAYER_SET(1),        // Dvorak layout
-    [2] = ACTION_DEFAULT_LAYER_SET(2),        // Colemak layout
-
-    [3] = ACTION_LAYER_TAP_KEY(3, KC_SPC),    // HHKB function layer
-    [4] = ACTION_LAYER_TAP_KEY(3, KC_ENTER),  // HHKB function layer
-
-    [5] = ACTION_LAYER_MOMENTARY(7),          // Keymap settings layer
-    [6] = ACTION_LAYER_TOGGLE(5),             // Toggle SpaceFn & EnterFn
-    [7] = ACTION_LAYER_TAP_TOGGLE(6),         // Toggle Mousekey layer
-
-    [8] = ACTION_MACRO(SIGNATURE),            // Forum auto-signature
 };
